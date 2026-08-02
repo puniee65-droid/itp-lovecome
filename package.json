@@ -1,0 +1,12 @@
+{
+  "name": "itpass-lovecome",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "pick": "node --env-file=.env scripts/pick-question.mjs",
+    "verify": "node --env-file=.env scripts/verify.mjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0"
+  }
+}
