@@ -87,3 +87,15 @@ export const AVOID_PATTERNS = [
   /表\s*の|下figure|図\s*の|次の図/,
   /a[,，]\s*b[,，]\s*c.*組合せ/,
 ];
+
+// subdomain → domain の逆引き
+export const DOMAIN_OF_SUBDOMAIN = Object.fromEntries([
+  ...['security','network','database','basic_theory','algorithm','software',
+      'computer_components','system_components','hardware','information_design',
+      'information_media'].map(s => [s, 'technology']),
+  ...['service_mgmt','project_mgmt','system_audit','software_dev_mgmt',
+      'development_tech'].map(s => [s, 'management']),
+  ...['legal','business_industry','corporate_activity','system_strategy',
+      'management_strategy','technology_strategy','system_planning'].map(s => [s, 'strategy']),
+]);
+

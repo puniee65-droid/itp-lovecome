@@ -7,13 +7,14 @@
  * 踏み込んだ説明の正しさは検証できないので、必ず人間が読むこと。
  */
 import { createClient } from '@supabase/supabase-js';
+import ws from 'ws';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { partOf, monthOf, tsundereRatio } from './lib/plan.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const sb = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
+const sb = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY, { realtime: { transport: ws }, auth: { persistSession: false, autoRefreshToken: false } });
 const LABELS = ['ア', 'イ', 'ウ', 'エ'];
 
 const ep = Number(process.argv[2]);

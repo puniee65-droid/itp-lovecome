@@ -1,9 +1,31 @@
 {
-  "next_episode": 3,
+  "next_episode": 4,
   "total_episodes": 108,
   "used_questions": [
-    { "episode": 1, "year": "r06", "number": 56, "domain": "technology", "subdomain": "computer_components", "location": "拓也の家" },
-    { "episode": 2, "year": "r05", "number": 83, "domain": "technology", "subdomain": "network", "location": "拓也の家" }
+    {
+      "episode": 1,
+      "year": "r06",
+      "number": 56,
+      "domain": "technology",
+      "subdomain": "computer_components",
+      "location": "ファミレス"
+    },
+    {
+      "episode": 2,
+      "year": "r05",
+      "number": 83,
+      "domain": "technology",
+      "subdomain": "network",
+      "location": "ファミレス"
+    },
+    {
+      "episode": 3,
+      "year": "r07",
+      "number": 12,
+      "domain": "strategy",
+      "subdomain": "legal",
+      "location": "就活イベント"
+    }
   ],
   "used_metaphors": [
     "穴の空いたバケツ（DRAMのコンデンサ）",
@@ -13,18 +35,21 @@
     "小分けの宅配便で相乗り（パケット交換方式）",
     "テナントとして間借り（MVNO）",
     "1メートル届いたら改札の横で引き落とされる（NFC）",
-    "縁の下の力持ち（NTP）"
+    "縁の下の力持ち（NTP）",
+    "ノベルティを配れる会社／パンフレットしか配れない会社＝商品商標とサービスマークの違い"
   ],
   "used_blunders": [
     "直接的な見下し",
-    "悪気ゼロの暴走"
+    "悪気ゼロの暴走",
+    "進路への無神経"
   ],
   "used_epilogue_gags": [
     "また教えてくれてもいいけど（DRAM）",
-    "VoIP、実装します（VoIP）"
+    "VoIP、実装します（VoIP）",
+    "あんた専属のサービスマーク（サービスマーク）"
   ],
   "notes": [
     "第1部で『美咲がストラテジ系を軽視する描写』を第20話以降に3回以上入れること（第29話不合格の伏線）",
-    "第3話は strategy/legal を推奨。就活イベントかカフェ。『法律とか興味ないんだけど』を言わせる"
+    "第3話で『法律とか興味ないんだけど』の伏線を仕込み済み。第20話以降、あと3回以上同様の描写を"
   ]
 }

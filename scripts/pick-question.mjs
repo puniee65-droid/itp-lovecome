@@ -9,18 +9,20 @@
  *        --metaphor "名刺交換＝プロトコル" --blunder 先回り
  */
 import { createClient } from '@supabase/supabase-js';
+import ws from 'ws';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   PARTS, partOf, monthOf, tsundereRatio,
   PART_LOCATIONS, SUBDOMAIN_LOCATIONS, AVOID_PATTERNS,
+  DOMAIN_OF_SUBDOMAIN,
 } from './lib/plan.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const STATE = path.join(ROOT, 'state', 'series-state.json');
 
-const sb = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
+const sb = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY, { realtime: { transport: ws }, auth: { persistSession: false, autoRefreshToken: false } });
 
 const args = process.argv.slice(2);
 const flag = (name) => {
@@ -71,6 +73,7 @@ for (const q of usedInPart) if (remaining[q.domain] != null) remaining[q.domain]
 
 // 明示指定がなければ、残りが最も多い分野を選ぶ
 const domain = flag('domain')
+  ?? (flag('subdomain') ? DOMAIN_OF_SUBDOMAIN[flag('subdomain')] : null)
   ?? Object.entries(remaining).sort((a, b) => b[1] - a[1])[0][0];
 
 // 2) 直近10話で使った場所
@@ -101,6 +104,9 @@ const pool = rows.filter(r =>
   !reported.has(r.id) &&
   !AVOID_PATTERNS.some(re => re.test(r.body))
 );
+
+console.log(`DB取得 ${rows.length} 件 → 除外後 ${pool.length} 件` +
+  (rows.length === 0 ? '（0件ならRLSポリシーを疑う）' : ''));
 
 // 4) スコアリング：この部で使える場所と結びつく subdomain を優遇
 const scored = pool.map(r => {
@@ -134,3 +140,5 @@ picked.forEach((c, i) => {
   console.log(`  正解: ${LABELS[c.correct_index]}（correct_index=${c.correct_index}／0起点）`);
   console.log(`  推奨の場所: ${c.locs.join('、') || '（要検討）'}\n`);
 });
+
+

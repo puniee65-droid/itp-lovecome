@@ -35,20 +35,36 @@
 
 `verify.mjs` がこれを読む。書式厳守。
 
+`verify.mjs` と `thumb.py` の両方がこれを読む。書式厳守。
+
 ```markdown
 <!-- meta
 episode: 3
 year: r06
 number: 12
 part: 1
+domain: strategy
 location: 就活イベント
-month: 5月
+month: 4月
 metaphor: 名刺交換＝プロトコル
 blunder: 先回り
+thumb_title: 名前を消せば、個人情報じゃない？
+thumb_a: 名前さえ隠しちゃえば個人情報じゃないでしょ？
+thumb_b: ……それ、一番危ないやつ
+thumb_sub: （このあと真顔で説明が始まる）
+choices: ア 匿名加工情報 / イ 個人識別符号 / ウ 要配慮個人情報 / エ 仮名加工情報
 -->
 
 # 【第3話】…
 ```
+
+### thumb_* の書き方
+
+- `thumb_title` … 大見出し。**20字以内**が読みやすい。省略するとH1から自動抽出
+- `thumb_a` … 美咲の迷言。**その回の誤答**をそのまま使うのが最も効く
+- `thumb_b` … 拓也の短い反応。**5〜10字**が理想。長いと画面が重くなる
+- `thumb_sub` … 落ちの一言（任意）
+- `choices` … `/` 区切りで4つ。**正解を割らないよう、順序も装飾も変えない**
 
 ---
 
