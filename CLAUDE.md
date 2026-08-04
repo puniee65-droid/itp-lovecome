@@ -53,6 +53,9 @@ thumb_a: 名前さえ隠しちゃえば個人情報じゃないでしょ？
 thumb_b: ……それ、一番危ないやつ
 thumb_sub: （このあと真顔で説明が始まる）
 choices: ア 匿名加工情報 / イ 個人識別符号 / ウ 要配慮個人情報 / エ 仮名加工情報
+thumb_char: public/image/misaki/女性普段着/女性.png
+thumb_char2: public/image/takuya/男性斜め左向き.png
+misaki_outfit: 女性普段着
 -->
 
 # 【第3話】…
@@ -65,6 +68,8 @@ choices: ア 匿名加工情報 / イ 個人識別符号 / ウ 要配慮個人�
 - `thumb_b` … 拓也の短い反応。**5〜10字**が理想。長いと画面が重くなる
 - `thumb_sub` … 落ちの一言（任意）
 - `choices` … `/` 区切りで4つ。**正解を割らないよう、順序も装飾も変えない**
+- `thumb_char` / `thumb_char2` … 美咲／拓也の立ち絵画像パス（`public/image/`配下、ROOTからの相対）。**毎話必ず両方指定する**。表情差分がある場合はシーンに合う画像を選ぶ
+- `misaki_outfit` … 美咲の衣装フォルダ名（`public/image/misaki/`配下のサブフォルダ名をそのまま書く。現状 `女性普段着` / `女性スーツ`）。`scripts/build-html.mjs` が本文中のセリフごとの表情差分をこのフォルダの `faces/` から選ぶために使う。**省略時は `女性普段着` 扱い**
 
 ---
 

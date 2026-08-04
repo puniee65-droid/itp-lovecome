@@ -11,6 +11,10 @@ episodes/epNNN.md 先頭のメタブロックから読む項目:
     thumb_b     : 拓也のセリフ（ブルーの吹き出し）
     thumb_sub   : 拓也の吹き出しの下の一言（任意）
     choices     : 選択肢ピル。'ア XXX / イ YYY / ...' 形式（任意・正解は割らない）
+    thumb_char  : 美咲の立ち絵画像パス（ROOTからの相対、任意）。指定時のみ右上に
+                  大きく合成し、セリフは顔まわりに寄せたレイアウトに切り替わる
+    thumb_char2 : 拓也の立ち絵画像パス（ROOTからの相対、任意）。指定時は右下に
+                  控えめなサイズで合成する（thumb_char とセットで使う想定）
 
 部ごとに背景色が変わるので、サムネの色だけで進行度がわかる。
 """
@@ -79,7 +83,13 @@ def wrap(draw, text, font, max_w):
     return lines
 
 
-def build(ep, meta):
+def build(ep, meta, bake_char=True, bake_chat=True):
+    """サムネイルを描画する。
+
+    bake_char / bake_chat を False にすると、立ち絵の画素・吹き出しの描画を
+    スキップし、その代わり座標情報を layout として返す（pptx 編集用）。
+    通常の CLI 利用（bake_char=bake_chat=True）では見た目は変わらない。
+    """
     part = int(meta.get('part', 1))
     c1, c2 = (np.array(x, dtype=float) for x in PART_BG.get(part, PART_BG[1]))
     yy, xx = np.mgrid[0:H, 0:W]
@@ -93,8 +103,50 @@ def build(ep, meta):
     for k, sx in enumerate((880, 960, 1040)):
         d.line([(sx, -40), (sx, 70 + k * 26), (1300, 70 + k * 26)],
                fill=(150, 170, 220, 34), width=3)
-    d.ellipse([-160, -190, 260, 230], fill=(*PINK, 45))
+    d.ellipse([-160, -190, 260, 230], fill=(214, 42, 90, 120))
     d.ellipse([1010, 430, 1440, 860], fill=(*BLUE, 40))
+
+    layout = {'char_box': None, 'char_box2': None, 'rows': [], 'sub': None}
+
+    def load_char(key):
+        path = meta.get(key)
+        if not path:
+            return None
+        p = ROOT / path
+        return Image.open(p).convert('RGBA') if p.exists() else None
+
+    char_left, char_img = W, load_char('thumb_char')
+    if char_img:
+        ch_w, ch_h = char_img.size
+        tgt_h = int(H * 1.12)
+        tgt_w = int(ch_w * tgt_h / ch_h)
+        max_char_w = 472  # 正方形に近い立ち絵で高さ基準にすると幅が出過ぎるための上限
+        if tgt_w > max_char_w:
+            tgt_w = max_char_w
+            tgt_h = int(ch_h * tgt_w / ch_w)
+        char_x, char_y = W - tgt_w + 24, -int(tgt_h * 0.03)  # 右上へわずかにはみ出させる
+        layout['char_box'] = (char_x, char_y, tgt_w, tgt_h)
+        char_left = char_x - 60  # 写真に重ならないための右端制限
+        if bake_char:
+            char_resized = char_img.resize((tgt_w, tgt_h), Image.LANCZOS)
+            img.paste(char_resized, (char_x, char_y), char_resized)
+
+    char_img2 = load_char('thumb_char2')
+    char2_box = None
+    if char_img2:
+        ch_w2, ch_h2 = char_img2.size
+        tgt_h2 = int(H * 0.385)
+        tgt_w2 = int(ch_w2 * tgt_h2 / ch_h2)
+        max_char2_w = 260  # 拓也は美咲より控えめなサイズに収める
+        if tgt_w2 > max_char2_w:
+            tgt_w2 = max_char2_w
+            tgt_h2 = int(ch_h2 * tgt_w2 / ch_w2)
+        char2_x, char2_y = W - tgt_w2 - 14, H - tgt_h2  # 右下に据え置き
+        char2_box = (char2_x, char2_y, tgt_w2, tgt_h2)
+        layout['char_box2'] = char2_box
+        if bake_char:
+            char2_resized = char_img2.resize((tgt_w2, tgt_h2), Image.LANCZOS)
+            img.paste(char2_resized, (char2_x, char2_y), char2_resized)
 
     badge_f = f(BLACK_F, 30)
     label = f'第 {ep} 話'
@@ -105,14 +157,15 @@ def build(ep, meta):
                         radius=(bh + py * 2) // 2,
                         fill=GOLD if ep in SPECIAL else INK)
     d.text((bx + px, by + py - bb[1]), label, font=badge_f, fill=(255, 255, 255))
-    d.text((bx + bw + px * 2 + 22, by + py + 2),
-           'ITパスポート過去問  ラブコメ解説', font=f(MED_F, 27), fill=INK_SOFT)
+    d.text((bx + bw + px * 2 + 22 + 41, by + py - 8),
+           'ITパスポート過去問  ラブコメ♥解説', font=f(MED_F, 41), fill=INK_SOFT)
 
     tx, ty = 72, 168
     title = meta['thumb_title']
+    title_max_w = (char_left - tx - 30) if char_img else 690
     for size in (78, 70, 62, 54, 48):
         t_f = f(BLACK_F, size)
-        lines = wrap(d, title, t_f, 690)
+        lines = wrap(d, title, t_f, title_max_w)
         if len(lines) <= 2:
             break
     lines = lines[:3]
@@ -128,13 +181,15 @@ def build(ep, meta):
     for i, ln in enumerate(lines):
         d.text((tx, ty + i * lh), ln, font=t_f, fill=INK)
 
+    title_bottom = ty + len(lines) * lh
     s_f = f(BLACK_F, 32)
-    sy = ty + len(lines) * lh + 26
+    sy = title_bottom + 26
     d.text((tx, sy), 'ツンデレ女子大生', font=s_f, fill=PINK)
     w1 = d.textlength('ツンデレ女子大生', font=s_f)
     d.text((tx + w1 + 14, sy), '×', font=s_f, fill=INK_SOFT)
     d.text((tx + w1 + d.textlength('× ', font=s_f) + 22, sy),
            '東大パソコンオタク', font=s_f, fill=BLUE)
+    tagline_bottom = sy + int(s_f.size * 1.3)
 
     yr = re.sub(r'^r0?(\d+)$', r'令和\1', meta.get('year', ''))
     foot = f"{yr}年度 問{meta.get('number', '')}"
@@ -144,17 +199,70 @@ def build(ep, meta):
         foot += f" ／ {meta['location']}"
     d.text((tx, H - 96), foot, font=f(MED_F, 25), fill=INK_SOFT)
 
+    # 選択肢ピルは画面下側の帯。その高さまで実際に写真が届いている場合だけ幅を制限する
+    pill_band_top = H - 58
+    char1_blocks_pills = char_img and (char_y + tgt_h) > pill_band_top
+    if char2_box:
+        bottom_right_limit = char2_box[0]
+    elif char1_blocks_pills:
+        bottom_right_limit = char_left
+    else:
+        bottom_right_limit = W
+    pill_max_x = (bottom_right_limit - 20) if char_img else 790
     if meta.get('choices'):
         cf = f(BLACK_F, 26)
         cx = tx
         for c in [s.strip() for s in meta['choices'].split('/')][:4]:
             cw = d.textlength(c, font=cf)
-            if cx + cw + 30 > 790:
+            if cx + cw + 30 > pill_max_x:
                 break
             d.rounded_rectangle([cx, H - 58, cx + cw + 30, H - 14], radius=22,
                                 fill=(255, 255, 255, 235), outline=(206, 214, 232), width=2)
             d.text((cx + 15, H - 50), c, font=cf, fill=INK_SOFT)
             cx += cw + 42
+
+    if char_img:
+        # 立ち絵ありのときは、タグラインの下・フッターの上の帯に、
+        # 写真に一切かからない横並びチップ＋吹き出しを積む
+        row_f, name_f, sub_f = f(MED_F, 22), f(BLACK_F, 20), f(REG_F, 17)
+        row_x, row_max_w = tx, char_left - tx
+
+        def chat_row(y, name, name_col, bg, ln_col, text, draw):
+            lines_ = wrap(d, text, row_f, row_max_w - 116)[:2]
+            lh_ = row_f.size + 8
+            rh = len(lines_) * lh_ + 14
+            nb = d.textbbox((0, 0), name, font=name_f)
+            nw, nh = nb[2] - nb[0], nb[3] - nb[1]
+            chip_w = nw + 28
+            chip_h = max(rh, nh + 14)
+            bx = row_x + chip_w + 12
+            bw = row_x + row_max_w - bx
+            if draw:
+                d.rounded_rectangle([row_x, y, row_x + chip_w, y + chip_h],
+                                    radius=chip_h // 2, fill=name_col)
+                d.text((row_x + (chip_w - nw) // 2 - nb[0], y + (chip_h - nh) // 2 - nb[1]),
+                       name, font=name_f, fill=(255, 255, 255))
+                d.rounded_rectangle([bx, y, bx + bw, y + chip_h], radius=chip_h // 2,
+                                    fill=(*bg, 248), outline=ln_col, width=2)
+                ty_ = y + (chip_h - len(lines_) * lh_) // 2
+                for i, ln in enumerate(lines_):
+                    d.text((bx + 20, ty_ + i * lh_), ln, font=row_f, fill=INK)
+            layout['rows'].append({
+                'name': name, 'name_col': name_col, 'bg': bg, 'ln_col': ln_col,
+                'text': text, 'chip_box': (row_x, y, chip_w, chip_h),
+                'bubble_box': (bx, y, bw, chip_h),
+            })
+            return y + chip_h
+
+        row_y = tagline_bottom + 8
+        row_y = chat_row(row_y, '美咲', PINK, PINK_BG, PINK_LN, meta.get('thumb_a', '……'), bake_chat) + 4
+        row_y = chat_row(row_y, '拓也', BLUE, BLUE_BG, BLUE_LN, meta.get('thumb_b', '……'), bake_chat)
+        if meta.get('thumb_sub'):
+            sub_pos = (row_x + 18, row_y + 4)
+            layout['sub'] = {'pos': sub_pos, 'text': meta['thumb_sub']}
+            if bake_chat:
+                d.text(sub_pos, meta['thumb_sub'], font=sub_f, fill=INK_SOFT)
+        return img, layout
 
     bf, nf, sf = f(MED_F, 27), f(BLACK_F, 26), f(REG_F, 21)
     bx0, bw0 = 812, 400
@@ -178,7 +286,7 @@ def build(ep, meta):
     b = wrap(d, meta.get('thumb_b', '……'), bf, bw0 - 56)[:3]
     end = bubble(bx0, 176, a, PINK_BG, PINK_LN, '美咲', PINK)
     bubble(bx0 - 6, end + 96, b, BLUE_BG, BLUE_LN, '拓也', BLUE, meta.get('thumb_sub'))
-    return img
+    return img, layout
 
 
 def main():
@@ -189,7 +297,8 @@ def main():
     out = ROOT / 'thumbs' / 'out'
     out.mkdir(parents=True, exist_ok=True)
     path = out / f'ep{ep:03d}.png'
-    build(ep, meta).save(path, 'PNG')
+    img, _ = build(ep, meta)
+    img.save(path, 'PNG')
     print(f'生成しました: {path}')
     print(f'  第{ep}話 / 第{meta.get("part", "?")}部 / {meta["thumb_title"]}')
 

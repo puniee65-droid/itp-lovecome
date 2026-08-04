@@ -1,3 +1,12 @@
 .env
 node_modules/
 thumbs/out/
+thumbs/pptx/
+web/
+public/image/*/faces/
+public/image/*/*/faces/
+public/image/*/old/
+public/image/*/*/old/
+thumbs/__pycache__/
+claudeResume.txt
+episodes/*.txt
