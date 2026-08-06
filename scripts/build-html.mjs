@@ -4,7 +4,9 @@
  *
  *   node scripts/build-html.mjs 1
  *
- * 出力先: web/epNNN.html （画像は web/images/ にコピーされる）
+ * 出力先: web/{20話区切りのレンジ}/epNNN.html （例: web/1-20/ep001.html）
+ * 画像は web/images/ に一本化してコピーされ、HTMLからは ../images/... の相対パスで参照する
+ * （file://で直接開いても、静的ホスティングにwebごとアップロードしても同じ相対構造なので動く）。
  * フレームワーク不要・HTML/CSSのみの自己完結ファイル。Cloudflare Pagesにそのまま置ける想定。
  *
  * このスクリプトはこの記事シリーズの本文フォーマット（幕構成・セリフ・引用ブロックの問題文・
@@ -15,6 +17,19 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+
+// web/ 配下は20話ごとのサブフォルダにまとめて運用する（1-20, 21-40, ...）。
+// HTMLは常に web/{range}/epNNN.html という1階層のサブフォルダに出力する。
+// 画像パスは「../images/...」の相対パスで参照する（file://で直接ダブルクリックしても、
+// 静的ホスティングにそのままアップロードしても、どちらでも同じ相対構造なら正しく解決できるため）。
+const TOTAL_EPISODES = 108;
+const GROUP_SIZE = 20;
+const IMG_PREFIX = '../images/';
+function groupDirName(ep) {
+  const start = Math.floor((ep - 1) / GROUP_SIZE) * GROUP_SIZE + 1;
+  const end = Math.min(start + GROUP_SIZE - 1, TOTAL_EPISODES);
+  return `${start}-${end}`;
+}
 
 function esc(s) {
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -76,11 +91,11 @@ function pickFace(speaker, text, misakiOutfit) {
     const { rules, defaults } = MISAKI_OUTFITS[outfit];
     const hit = rules.find(([re]) => re.test(text));
     const file = hit ? hit[1] : defaults[misakiDefaultIdx[outfit]++ % defaults.length];
-    return `images/faces/misaki/${outfit}/${file}`;
+    return `${IMG_PREFIX}faces/misaki/${outfit}/${file}`;
   }
   const hit = TAKUYA_FACE_RULES.find(([re]) => re.test(text));
   const file = hit ? hit[1] : TAKUYA_FACE_DEFAULT;
-  return `images/faces/takuya/${file}`;
+  return `${IMG_PREFIX}faces/takuya/${file}`;
 }
 
 function renderDialogue(speaker, text, isThought, avatarSrc) {
@@ -105,7 +120,7 @@ function renderCharacterCard(name, avatarSrc, kana, desc) {
 </div>`;
 }
 
-function renderBlockquote(rawLines) {
+function renderBlockquote(rawLines, kicker = '今日の問題', isRecap = false) {
   const cleaned = rawLines.map((l) => l.replace(/^>\s?/, '').replace(/\s+$/, ''));
   const nonEmpty = cleaned.filter((l) => l.length > 0);
   const isQuiz = nonEmpty.some((l) => /^（[アイウエ]）/.test(l));
@@ -118,8 +133,8 @@ function renderBlockquote(rawLines) {
         return `<li><span class="choice-label">${m[1]}</span><span>${inlineFormat(m[2])}</span></li>`;
       })
       .join('\n');
-    return `<div class="quiz-card">
-  <p class="quiz-kicker">今日の問題</p>
+    return `<div class="quiz-card${isRecap ? ' recap' : ''}">
+  <p class="quiz-kicker">${esc(kicker)}</p>
   <p class="quiz-question">${inlineFormat(question)}</p>
   <ul class="quiz-choices">
 ${choiceHtml}
@@ -155,24 +170,36 @@ function build(ep) {
   const md = fs.readFileSync(mdPath, 'utf8');
   const { meta, body } = readMeta(md);
 
-  const outDir = path.join(ROOT, 'web');
-  const imgDir = path.join(outDir, 'images');
-  fs.mkdirSync(imgDir, { recursive: true });
+  const epStr = String(ep).padStart(3, '0');
+  const outDir = path.join(ROOT, 'web', groupDirName(ep));
+  // 画像はグループフォルダごとに分けず、web/images/ に一本化する（ルート相対パスで参照するため、
+  // どのサブフォルダのHTMLからでも同じ場所を指せる）。
+  const imgDir = path.join(ROOT, 'web', 'images');
+  const epImgDir = path.join(imgDir, `ep${epStr}`);
+  fs.mkdirSync(outDir, { recursive: true });
+  fs.mkdirSync(epImgDir, { recursive: true });
 
-  function copyChar(relPath, destName) {
+  // 立ち絵（thumb_char/thumb_char2）は元の public/image/ 以下のフォルダ構成をそのまま
+  // web/images/characters/ 配下に写す共有素材として扱う。同じポーズを使う話が多いため、
+  // 話ごとに複製せず1枚だけ持たせ、リポジトリの肥大化を防ぐ（顔差分の faces/ と同じ考え方）。
+  function copyCharShared(relPath) {
     if (!relPath) return null;
     const src = path.join(ROOT, relPath);
     if (!fs.existsSync(src)) return null;
-    fs.copyFileSync(src, path.join(imgDir, destName));
-    return `images/${destName}`;
+    const rel = relPath.replace(/^public\/image\//, '');
+    const dest = path.join(imgDir, 'characters', rel);
+    fs.mkdirSync(path.dirname(dest), { recursive: true });
+    fs.copyFileSync(src, dest);
+    return `${IMG_PREFIX}characters/${rel}`;
   }
 
-  const misakiSrc = copyChar(meta.thumb_char, 'misaki.png') ?? '';
-  const takuyaSrc = copyChar(meta.thumb_char2, 'takuya.png') ?? '';
+  const misakiSrc = copyCharShared(meta.thumb_char) ?? '';
+  const takuyaSrc = copyCharShared(meta.thumb_char2) ?? '';
   const misakiOutfit = MISAKI_OUTFITS[meta.misaki_outfit] ? meta.misaki_outfit : '女性普段着';
 
   // 表情差分（顔アップ画像）一式をコピーする。scripts/crop_faces.py で事前生成したもの。
   // 美咲は衣装フォルダの下に faces/ があるので、その回で使う衣装分だけコピーする。
+  // 全話共通の素材なので web/images/faces/ に一本化し、話ごとには複製しない。
   function copyFaces(who, outfit) {
     const src = outfit
       ? path.join(ROOT, 'public', 'image', who, outfit, 'faces')
@@ -188,11 +215,17 @@ function build(ep) {
   }
   copyFaces('misaki', misakiOutfit);
   copyFaces('takuya');
-  const thumbPath = path.join(ROOT, 'thumbs', 'out', `ep${String(ep).padStart(3, '0')}.png`);
+  // thumbs/out/ もユーザー運用で 1-20 などのサブフォルダに分かれているため、
+  // グループ化後のパスとフラットな旧パスの両方を試す。
+  const thumbCandidates = [
+    path.join(ROOT, 'thumbs', 'out', groupDirName(ep), `ep${epStr}.png`),
+    path.join(ROOT, 'thumbs', 'out', `ep${epStr}.png`),
+  ];
+  const thumbPath = thumbCandidates.find((p) => fs.existsSync(p)) ?? thumbCandidates[0];
   let ogImage = '';
   if (fs.existsSync(thumbPath)) {
-    fs.copyFileSync(thumbPath, path.join(imgDir, 'thumb.png'));
-    ogImage = 'images/thumb.png';
+    fs.copyFileSync(thumbPath, path.join(epImgDir, 'thumb.png'));
+    ogImage = `${IMG_PREFIX}ep${epStr}/thumb.png`;
   }
 
   const lines = body.split('\n');
@@ -200,6 +233,7 @@ function build(ep) {
   const main = [];
   let sectionOpen = false;
   let i = 0;
+  let quizCount = 0;
 
   function pushToCurrent(html) {
     (sectionOpen ? main : hero).push(html);
@@ -250,7 +284,10 @@ function build(ep) {
     if (line.startsWith('>')) {
       const raw = [];
       while (i < lines.length && lines[i].startsWith('>')) { raw.push(lines[i]); i++; }
-      pushToCurrent(renderBlockquote(raw));
+      quizCount++;
+      const isRecap = quizCount > 1;
+      const kicker = isRecap ? '問題文（再掲）' : '今日の問題';
+      pushToCurrent(renderBlockquote(raw, kicker, isRecap));
       continue;
     }
 
@@ -323,7 +360,7 @@ ${main.join('\n')}
 </html>
 `;
 
-  const outPath = path.join(outDir, `ep${String(ep).padStart(3, '0')}.html`);
+  const outPath = path.join(outDir, `ep${epStr}.html`);
   fs.writeFileSync(outPath, html, 'utf8');
   console.log(`生成しました: ${outPath}`);
 }
@@ -414,6 +451,10 @@ h3 { font-size: 1rem; margin: 20px 0 10px; }
   box-shadow: 0 4px 16px rgba(31,35,55,0.08);
 }
 .quiz-kicker { color: var(--pink); font-weight: bold; font-size: 0.8rem; margin: 0 0 8px; }
+.quiz-card.recap {
+  border: 3px solid #e0203c;
+}
+.quiz-card.recap .quiz-kicker { font-size: 1.15rem; }
 .quiz-question { font-weight: bold; margin: 0 0 16px; }
 .quiz-choices { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
 .quiz-choices li {

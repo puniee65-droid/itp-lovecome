@@ -44,6 +44,20 @@ PART_BG = {
 SPECIAL = {29, 33, 103, 108}
 DOMAIN_JA = {'technology': 'テクノロジ系', 'strategy': 'ストラテジ系',
              'management': 'マネジメント系'}
+# サブ領域（中分類）の日本語表記。episodes/epNNN.md 末尾の「この記事は...」表記と揃えてある。
+SUBDOMAIN_JA = {
+    'security': 'セキュリティ', 'network': 'ネットワーク', 'database': 'データベース',
+    'basic_theory': '基礎理論', 'algorithm': 'アルゴリズム', 'software': 'ソフトウェア',
+    'computer_components': 'コンピュータ構成要素', 'system_components': 'システム構成要素',
+    'hardware': 'ハードウェア', 'information_design': '情報デザイン',
+    'information_media': '情報メディア',
+    'service_mgmt': 'サービスマネジメント', 'project_mgmt': 'プロジェクトマネジメント',
+    'system_audit': 'システム監査', 'software_dev_mgmt': 'システム開発技術',
+    'development_tech': '開発技術',
+    'legal': '法務', 'business_industry': '産業と業種', 'corporate_activity': '企業活動',
+    'system_strategy': 'システム戦略', 'management_strategy': '経営戦略マネジメント',
+    'technology_strategy': '技術戦略マネジメント', 'system_planning': 'システム企画',
+}
 
 
 def f(path, size):
@@ -67,6 +81,31 @@ def read_meta(ep):
         h1 = re.search(r'^#\s*【第\d+話】(.+?)(?:[｜|]|$)', md, re.M)
         meta['thumb_title'] = h1.group(1).strip() if h1 else '（タイトル未設定）'
     return meta
+
+
+def draw_italic_centered(img, center_x, top_y, text, font_path, size, fill):
+    """疑似イタリック体でテキストを描画する（日本語フォントに斜体がないため、
+    通常のグリフをせん断変形して傾ける）。center_x を中心にセンタリングして img に貼り付ける。
+    戻り値は描画した高さ（次の要素を配置する際の目安）。
+    """
+    shear = 0.22
+    tmp_font = f(font_path, size)
+    probe = ImageDraw.Draw(Image.new('RGBA', (1, 1)))
+    bbox = probe.textbbox((0, 0), text, font=tmp_font)
+    w, h = bbox[2] - bbox[0], bbox[3] - bbox[1]
+    pad_x = int(h * shear) + 6
+    pad_y = 6
+    txt_img = Image.new('RGBA', (w + pad_x * 2, h + pad_y * 2), (0, 0, 0, 0))
+    td = ImageDraw.Draw(txt_img)
+    td.text((pad_x - bbox[0], pad_y - bbox[1]), text, font=tmp_font, fill=fill)
+    sheared = txt_img.transform(
+        txt_img.size, Image.AFFINE,
+        (1, shear, -shear * txt_img.height * 0.5, 0, 1, 0),
+        resample=Image.BICUBIC,
+    )
+    paste_x = int(center_x - sheared.width / 2)
+    img.paste(sheared, (paste_x, top_y), sheared)
+    return h + pad_y * 2
 
 
 def wrap(draw, text, font, max_w):
@@ -157,8 +196,22 @@ def build(ep, meta, bake_char=True, bake_chat=True):
                         radius=(bh + py * 2) // 2,
                         fill=GOLD if ep in SPECIAL else INK)
     d.text((bx + px, by + py - bb[1]), label, font=badge_f, fill=(255, 255, 255))
-    d.text((bx + bw + px * 2 + 22 + 41, by + py - 8),
-           'ITパスポート過去問  ラブコメ♥解説', font=f(MED_F, 41), fill=INK_SOFT)
+    sub_label = 'ITパスポート過去問  ラブコメ♥解説'
+    sub_label_f = f(MED_F, 41)
+    sub_label_x = bx + bw + px * 2 + 22 + 41
+    sub_label_y = by + py - 8
+    d.text((sub_label_x, sub_label_y), sub_label, font=sub_label_f, fill=INK_SOFT)
+
+    # 改題した話は、このラベルの直下に旧タイトルを疑似イタリックでセンタリング表示する
+    old_title = meta.get('thumb_title_old')
+    if old_title and old_title != meta.get('thumb_title'):
+        label_bbox = d.textbbox((sub_label_x, sub_label_y), sub_label, font=sub_label_f)
+        label_center_x = (label_bbox[0] + label_bbox[2]) / 2
+        old_title_size = round(41 * 0.8)
+        draw_italic_centered(
+            img, label_center_x, label_bbox[3] + 6,
+            f'〜{old_title}〜', MED_F, old_title_size, INK_SOFT,
+        )
 
     tx, ty = 72, 168
     title = meta['thumb_title']
@@ -172,12 +225,14 @@ def build(ep, meta, bake_char=True, bake_chat=True):
     lh = int(size * 1.34)
     d.rounded_rectangle([tx, ty - 34, tx + 92, ty - 24], radius=5, fill=PINK)
 
-    last = lines[-1].rstrip('？?。は')
-    hl_w = d.textlength(last, font=t_f) if last else 0
-    hl_y = ty + (len(lines) - 1) * lh
-    if hl_w:
-        d.rounded_rectangle([tx - 10, hl_y + size * 0.34, tx + hl_w + 10, hl_y + size * 1.28],
-                            radius=8, fill=(*MARKER, 145))
+    # マーカーの黄色いハイライトは、全ての行の下に敷く（最終行だけは末尾の句読点類を除いて敷く）
+    for i, ln in enumerate(lines):
+        hl_text = ln.rstrip('？?。は') if i == len(lines) - 1 else ln
+        hl_w = d.textlength(hl_text, font=t_f) if hl_text else 0
+        hl_y = ty + i * lh
+        if hl_w:
+            d.rounded_rectangle([tx - 10, hl_y + size * 0.34, tx + hl_w + 10, hl_y + size * 1.28],
+                                radius=8, fill=(*MARKER, 145))
     for i, ln in enumerate(lines):
         d.text((tx, ty + i * lh), ln, font=t_f, fill=INK)
 
@@ -195,9 +250,17 @@ def build(ep, meta, bake_char=True, bake_chat=True):
     foot = f"{yr}年度 問{meta.get('number', '')}"
     if DOMAIN_JA.get(meta.get('domain', '')):
         foot += f" ／ {DOMAIN_JA[meta['domain']]}"
+    if SUBDOMAIN_JA.get(meta.get('subdomain', '')):
+        foot += f" ／ {SUBDOMAIN_JA[meta['subdomain']]}"
     if meta.get('location'):
         foot += f" ／ {meta['location']}"
-    d.text((tx, H - 96), foot, font=f(MED_F, 25), fill=INK_SOFT)
+    # サブ領域・場所が長い話（複合ロケーションなど）でもはみ出さないよう、収まる最大サイズまで縮める
+    foot_max_w = (char_left - tx - 20) if char_img else 1000
+    for foot_size in (25, 22, 19, 16, 14):
+        foot_f = f(MED_F, foot_size)
+        if d.textlength(foot, font=foot_f) <= foot_max_w:
+            break
+    d.text((tx, H - 96), foot, font=foot_f, fill=INK_SOFT)
 
     # 選択肢ピルは画面下側の帯。その高さまで実際に写真が届いている場合だけ幅を制限する
     pill_band_top = H - 58
@@ -289,12 +352,23 @@ def build(ep, meta, bake_char=True, bake_chat=True):
     return img, layout
 
 
+TOTAL_EPISODES = 108
+GROUP_SIZE = 20
+
+
+def group_dir_name(ep: int) -> str:
+    # web/ 側のフォルダ分け（1-20, 21-40, ...）に合わせる。build-html.mjs の groupDirName と揃えること。
+    start = (ep - 1) // GROUP_SIZE * GROUP_SIZE + 1
+    end = min(start + GROUP_SIZE - 1, TOTAL_EPISODES)
+    return f'{start}-{end}'
+
+
 def main():
     if len(sys.argv) < 2:
         sys.exit('使い方: python3 thumbs/thumb.py <話数>')
     ep = int(sys.argv[1])
     meta = read_meta(ep)
-    out = ROOT / 'thumbs' / 'out'
+    out = ROOT / 'thumbs' / 'out' / group_dir_name(ep)
     out.mkdir(parents=True, exist_ok=True)
     path = out / f'ep{ep:03d}.png'
     img, _ = build(ep, meta)
