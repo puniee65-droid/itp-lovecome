@@ -25,6 +25,60 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const TOTAL_EPISODES = 108;
 const GROUP_SIZE = 20;
 const IMG_PREFIX = '../images/';
+// 場所（meta.location）→ public/image/Illustration/ 内のファイル名。
+// 該当する挿絵がない場所（データセンター見学・ネットカフェ・試験会場前・電話）は意図的に未対応（挿絵なし）。
+const LOCATION_ILLUSTRATION = {
+  'ファミレス': 'ファミレス.png',
+  '就活イベント': '就職説明会.png',
+  '美咲のバイト先': 'バイト先.png',
+  '美咲の家': '美咲の部屋.png',
+  'カフェ': 'カフェ.png',
+  '家電量販店': '家電量販店.png',
+  '銀行・ATM': '銀行.png',
+  '図書館': '図書館.png',
+  '拓也の家': '拓也の部屋.png',
+  'スーパー・商店街': '商店街.png',
+  '大学の講義棟・学食': '大学食堂.png',
+  'コンビニ': 'コンビニ.png',
+  '母校の高校': '高校.png',
+  'カラオケ': 'カラオケ.png',
+  '公園': '公園.png',
+  '病院': '病院.png',
+  '祖父母の家・田舎': '田舎.png',
+  '海': '海.png',
+  '動物園': '動物園.png',
+  '猫カフェ': '猫カフェ.png',
+  '遊園地': '遊園地.png',
+  '学園祭': '学園祭.png',
+  '神社・初詣': '神社.png',
+  'トレーニングジム': 'トレーニングジム.png',
+  '銭湯': '銭湯.png',
+  '終電を逃す': '駅.png',
+  'コインランドリー': 'コインランドリー.png',
+  '雨宿り': '雨宿り.png',
+  '卒業式': '卒業式.png',
+  '看病': '看病.png',
+  '引っ越し・新生活の準備': '引っ越し.png',
+  'エレベーターに二人きり': 'エレベータ.png',
+  '電車内': '電車内.png',
+  '東大の研究室': '大学研究室.png',
+  'プール': 'プール.png',
+  '山': '山.png',
+  'データセンター見学': 'データセンター.png',
+  'ネットカフェ': 'ネットカフェ.png',
+  '試験会場前': '試験会場.png',
+  '電話（美咲の家／拓也の家）': '電話.png',
+};
+// 話ごとの例外（同じ場所でも話によって使う挿絵が違うもの）
+const ILLUSTRATION_OVERRIDE = {
+  1: 'ファミレス第1話.png',
+  4: 'バイト先裏.png',
+  16: 'バイト先.png',
+  27: 'バイト先.png',
+  28: '試験会場.png',
+  58: 'バイト先.png',
+};
+
 function groupDirName(ep) {
   const start = Math.floor((ep - 1) / GROUP_SIZE) * GROUP_SIZE + 1;
   const end = Math.min(start + GROUP_SIZE - 1, TOTAL_EPISODES);
@@ -73,8 +127,14 @@ const MISAKI_OUTFITS = {
     ],
     defaults: ['女性スーツ2.png', '女性右向き.png', '女性右斜め向き.png', '女性全身1.png'],
   },
+  '女性水着': {
+    rules: [
+      [/……っ、|べ、別に|恥ずかし|照れ|嬉しくないから|びっくりしてる』が余計/, '女性照れている.png'],
+    ],
+    defaults: ['女性.png', '女性2.png', '女性3.png', '女性4.png'],
+  },
 };
-const misakiDefaultIdx = { '女性普段着': 0, '女性スーツ': 0 };
+const misakiDefaultIdx = { '女性普段着': 0, '女性スーツ': 0, '女性水着': 0 };
 
 const TAKUYA_FACE_RULES = [
   [/ごめん|すみません|悪かった|軽率|申し訳/, '男性謝る.png'],
@@ -197,6 +257,19 @@ function build(ep) {
   const takuyaSrc = copyCharShared(meta.thumb_char2) ?? '';
   const misakiOutfit = MISAKI_OUTFITS[meta.misaki_outfit] ? meta.misaki_outfit : '女性普段着';
 
+  // 会話の場所に対応する挿絵（public/image/Illustration/）。立ち絵と同じく共有素材としてコピーする。
+  function copyIllustration() {
+    const file = ILLUSTRATION_OVERRIDE[ep] ?? LOCATION_ILLUSTRATION[meta.location];
+    if (!file) return null;
+    const src = path.join(ROOT, 'public', 'image', 'Illustration', file);
+    if (!fs.existsSync(src)) return null;
+    const dest = path.join(imgDir, 'illustrations', file);
+    fs.mkdirSync(path.dirname(dest), { recursive: true });
+    fs.copyFileSync(src, dest);
+    return `${IMG_PREFIX}illustrations/${file}`;
+  }
+  const illustrationSrc = copyIllustration();
+
   // 表情差分（顔アップ画像）一式をコピーする。scripts/crop_faces.py で事前生成したもの。
   // 美咲は衣装フォルダの下に faces/ があるので、その回で使う衣装分だけコピーする。
   // 全話共通の素材なので web/images/faces/ に一本化し、話ごとには複製しない。
@@ -210,7 +283,9 @@ function build(ep) {
     fs.mkdirSync(dest, { recursive: true });
     if (!fs.existsSync(src)) return;
     for (const f of fs.readdirSync(src)) {
-      fs.copyFileSync(path.join(src, f), path.join(dest, f));
+      const srcFile = path.join(src, f);
+      if (fs.statSync(srcFile).isDirectory()) continue; // old/ などのサブフォルダはスキップ
+      fs.copyFileSync(srcFile, path.join(dest, f));
     }
   }
   copyFaces('misaki', misakiOutfit);
@@ -232,11 +307,21 @@ function build(ep) {
   const hero = [];
   const main = [];
   let sectionOpen = false;
+  let currentSectionTitle = '';
   let i = 0;
   let quizCount = 0;
 
   function pushToCurrent(html) {
     (sectionOpen ? main : hero).push(html);
+  }
+
+  function closeSectionIfOpen() {
+    if (!sectionOpen) return;
+    // 「登場人物」セクションの末尾（次の見出しの直前）に、会話の場所の挿絵を差し込む
+    if (currentSectionTitle === '登場人物' && illustrationSrc) {
+      main.push(`<img class="location-illustration" src="${illustrationSrc}" alt="${esc(meta.location || '')}">`);
+    }
+    main.push('</section>');
   }
 
   while (i < lines.length) {
@@ -260,9 +345,10 @@ function build(ep) {
     }
 
     if ((m = line.match(/^## (.+)$/))) {
-      if (sectionOpen) main.push('</section>');
+      closeSectionIfOpen();
       main.push(`<section class="scene"><h2>${inlineFormat(m[1])}</h2>`);
       sectionOpen = true;
+      currentSectionTitle = m[1].trim();
       i++; continue;
     }
     if ((m = line.match(/^### (.+)$/))) {
@@ -331,7 +417,7 @@ function build(ep) {
     pushToCurrent(`<p class="narration">${inlineFormat(line)}</p>`);
     i++;
   }
-  if (sectionOpen) main.push('</section>');
+  closeSectionIfOpen();
 
   const title = meta.thumb_title || `第${ep}話`;
   const html = `<!doctype html>
@@ -443,6 +529,16 @@ h3 { font-size: 1rem; margin: 20px 0 10px; }
 .character-name { margin: 0 0 4px; font-weight: bold; }
 .character-name span { font-weight: normal; color: var(--ink-soft); font-size: 0.85rem; margin-left: 4px; }
 .character-desc { margin: 0; font-size: 0.9rem; color: var(--ink-soft); }
+
+.location-illustration {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 16px;
+  margin: 18px 0 6px;
+  box-shadow: 0 6px 20px rgba(31,35,55,0.12);
+}
 
 .quiz-card {
   background: #fff;
