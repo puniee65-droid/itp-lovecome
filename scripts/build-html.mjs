@@ -15,15 +15,15 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { groupDirName } from './lib/groups.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
-// web/ 配下は20話ごとのサブフォルダにまとめて運用する（1-20, 21-40, ...）。
+// web/ 配下は20話ごとのサブフォルダにまとめて運用する（1-20, 21-40, ...）。グループ計算は
+// scripts/lib/groups.mjs に集約し、build-index.mjs（一覧ページ生成）と共有している。
 // HTMLは常に web/{range}/epNNN.html という1階層のサブフォルダに出力する。
 // 画像パスは「../images/...」の相対パスで参照する（file://で直接ダブルクリックしても、
 // 静的ホスティングにそのままアップロードしても、どちらでも同じ相対構造なら正しく解決できるため）。
-const TOTAL_EPISODES = 108;
-const GROUP_SIZE = 20;
 const IMG_PREFIX = '../images/';
 // 場所（meta.location）→ public/image/Illustration/ 内のファイル名。
 // 該当する挿絵がない場所（データセンター見学・ネットカフェ・試験会場前・電話）は意図的に未対応（挿絵なし）。
@@ -78,12 +78,6 @@ const ILLUSTRATION_OVERRIDE = {
   28: '試験会場.png',
   58: 'バイト先.png',
 };
-
-function groupDirName(ep) {
-  const start = Math.floor((ep - 1) / GROUP_SIZE) * GROUP_SIZE + 1;
-  const end = Math.min(start + GROUP_SIZE - 1, TOTAL_EPISODES);
-  return `${start}-${end}`;
-}
 
 function esc(s) {
   return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -433,12 +427,14 @@ ${CSS}
 </style>
 </head>
 <body>
+<a class="back-to-index" href="index.html">← 一覧に戻る</a>
 <header class="hero">
 ${hero.join('\n')}
 </header>
 <main>
 ${main.join('\n')}
 </main>
+<a class="back-to-index back-to-index-bottom" href="index.html">← 一覧に戻る</a>
 <footer class="site-footer">
   <p>ITパスポート過去問 ラブコメ解説</p>
 </footer>
@@ -476,8 +472,31 @@ main, header.hero, footer.site-footer {
   margin: 0 auto;
   padding: 0 20px;
 }
+.back-to-index {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 6px;
+  margin: 18px auto 0;
+  padding: 10px 22px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #fff;
+  background: var(--blue);
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(47,111,237,0.3);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.back-to-index:hover, .back-to-index:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(47,111,237,0.4);
+}
+.back-to-index-bottom {
+  margin: 32px auto 40px;
+}
 header.hero {
-  padding-top: 48px;
+  padding-top: 16px;
   text-align: center;
 }
 header.hero h1 {
