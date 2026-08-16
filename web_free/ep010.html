@@ -1,0 +1,892 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>【第10話】静電気で反応するパネル｜ITパスポート ラブコメ解説</title>
+<meta name="description" content="静電気で反応するパネル｜ツンデレ女子大生と東大パソコンオタクの、ちょっと不器用な勉強会。ITパスポート過去問（令和6年度 問76）を実際の過去問で解説。">
+<link rel="canonical" href="https://itp-lovecome1-free.puniee-work.com/ep010.html">
+<meta name="google-site-verification" content="0-v6CVaNU3h9D5Yw373vGnZ5f5Cju0XpfsWTc2XBGVM">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ITパスポート過去問 ラブコメ♥解説">
+<meta property="og:title" content="【第10話】静電気で反応するパネル｜ITパスポート ラブコメ解説">
+<meta property="og:description" content="静電気で反応するパネル｜ツンデレ女子大生と東大パソコンオタクの、ちょっと不器用な勉強会。ITパスポート過去問（令和6年度 問76）を実際の過去問で解説。">
+<meta property="og:url" content="https://itp-lovecome1-free.puniee-work.com/ep010.html">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://itp-lovecome1-free.puniee-work.com/images/ep010/thumb.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="【第10話】静電気で反応するパネル｜ITパスポート ラブコメ解説">
+<meta name="twitter:description" content="静電気で反応するパネル｜ツンデレ女子大生と東大パソコンオタクの、ちょっと不器用な勉強会。ITパスポート過去問（令和6年度 問76）を実際の過去問で解説。">
+<meta name="twitter:image" content="https://itp-lovecome1-free.puniee-work.com/images/ep010/thumb.png">
+<style>
+
+:root {
+  --ink: #1f2337;
+  --ink-soft: #5f6782;
+  --pink: #ff6b8a;
+  --pink-bg: #ffe7ed;
+  --pink-ln: #ffb0c3;
+  --blue: #2f6fed;
+  --blue-bg: #e2ecff;
+  --blue-ln: #a3c1ff;
+  --marker: #ffe066;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Hiragino Sans", "Noto Sans JP", system-ui, sans-serif;
+  color: var(--ink);
+  background: linear-gradient(135deg, #fff3f6 0%, #e9f0ff 100%);
+  line-height: 1.85;
+}
+main, header.hero, footer.site-footer {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.back-to-index {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 6px;
+  margin: 18px auto 0;
+  padding: 10px 22px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #fff;
+  background: var(--blue);
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(47,111,237,0.3);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.back-to-index:hover, .back-to-index:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(47,111,237,0.4);
+}
+.back-to-index-bottom {
+  margin: 32px auto 40px;
+}
+
+.post-nav {
+  max-width: 640px;
+  margin: 8px auto 0;
+  padding: 20px;
+  background: #fff;
+  border: 2px solid var(--pink-ln);
+  border-radius: 16px;
+  text-align: center;
+}
+.post-nav-title {
+  margin: 0 0 12px;
+  font-weight: bold;
+  color: var(--pink);
+  font-size: 0.95rem;
+}
+.post-nav-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+.post-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 18px;
+  border-radius: 999px;
+  font-weight: bold;
+  font-size: 0.85rem;
+  text-decoration: none;
+  color: var(--ink);
+  background: #fff;
+  border: 2px solid var(--blue-ln);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.post-nav-btn:hover, .post-nav-btn:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(31,35,55,0.1);
+}
+.post-nav-btn-primary {
+  color: #fff;
+  background: var(--blue);
+  border-color: var(--blue);
+  box-shadow: 0 4px 14px rgba(47,111,237,0.3);
+}
+.post-nav-btn-note {
+  color: #000;
+  background: #ff8a00;
+  border-color: #ff8a00;
+}
+header.hero {
+  padding-top: 16px;
+  text-align: center;
+}
+header.hero h1 {
+  font-size: 1.7rem;
+  margin: 0 0 12px;
+}
+.tagline { color: var(--ink-soft); font-size: 0.9rem; margin: 0 0 8px; }
+.ep-badge {
+  display: inline-block;
+  background: var(--ink);
+  color: #fff;
+  padding: 6px 18px;
+  border-radius: 999px;
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+section.scene {
+  background: rgba(255,255,255,0.6);
+  border-radius: 18px;
+  padding: 28px 24px;
+  margin: 28px 0;
+}
+section.scene h2 {
+  font-size: 1.15rem;
+  margin: 0 0 20px;
+  padding-left: 14px;
+  border-left: 6px solid var(--pink);
+}
+h3 { font-size: 1rem; margin: 20px 0 10px; }
+
+.character-card {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  background: #fff;
+  border-radius: 14px;
+  padding: 14px;
+  margin: 14px 0;
+  border: 2px solid var(--pink-ln);
+}
+.character-card.takuya { border-color: var(--blue-ln); }
+.character-card img {
+  width: 216px; height: 216px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top center;
+  flex: none;
+}
+.character-name { margin: 0 0 4px; font-weight: bold; }
+.character-name span { font-weight: normal; color: var(--ink-soft); font-size: 0.85rem; margin-left: 4px; }
+.character-desc { margin: 0; font-size: 0.9rem; color: var(--ink-soft); }
+
+.location-illustration {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 16px;
+  margin: 18px 0 6px;
+  box-shadow: 0 6px 20px rgba(31,35,55,0.12);
+}
+
+.quiz-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 16px rgba(31,35,55,0.08);
+}
+.quiz-kicker { color: var(--pink); font-weight: bold; font-size: 0.8rem; margin: 0 0 8px; }
+.quiz-card.recap {
+  border: 3px solid #e0203c;
+}
+.quiz-card.recap .quiz-kicker { font-size: 1.15rem; }
+.quiz-question { font-weight: bold; margin: 0 0 16px; }
+.quiz-choices { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.quiz-choices li {
+  display: flex; gap: 10px; align-items: baseline;
+  background: #f7f8fb; border-radius: 10px; padding: 10px 14px;
+}
+.choice-label {
+  font-weight: bold; color: var(--pink); flex: none;
+}
+
+blockquote.callout {
+  background: var(--marker);
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin: 16px 0;
+  font-weight: bold;
+}
+blockquote.callout p { margin: 0; }
+
+.bubble-row { display: flex; gap: 10px; margin: 14px 0; align-items: center; }
+.bubble-row.takuya { flex-direction: row-reverse; }
+.bubble-row .avatar {
+  width: 192px; height: 192px; border-radius: 50%; object-fit: cover; object-position: center center; flex: none;
+  border: 3px solid rgba(255,255,255,0.9); box-shadow: 0 2px 6px rgba(31,35,55,0.12);
+}
+.bubble {
+  background: var(--pink-bg);
+  border: 2px solid var(--pink-ln);
+  border-radius: 16px;
+  padding: 10px 16px;
+  max-width: calc(100% - 220px);
+}
+.bubble.takuya { background: var(--blue-bg); border-color: var(--blue-ln); }
+.bubble.thought { border-style: dashed; opacity: 0.9; }
+.bubble p { margin: 0; }
+.bubble .speaker-name { font-size: 0.75rem; font-weight: bold; color: var(--ink-soft); margin: 0 0 2px; }
+.thought-tag {
+  font-weight: normal; font-size: 0.7rem; margin-left: 6px;
+  border: 1px solid var(--ink-soft); border-radius: 999px; padding: 0 6px;
+}
+
+.narration {
+  text-align: center;
+  color: var(--ink-soft);
+  font-style: italic;
+  font-size: 0.9rem;
+  margin: 18px 0;
+}
+
+.plain-list, .recap-list { padding-left: 1.4em; }
+.plain-list li, .recap-list li { margin: 6px 0; }
+
+.table-wrap { overflow-x: auto; margin: 16px 0; }
+table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+th, td { border: 1px solid #dfe3ee; padding: 8px 10px; text-align: left; }
+th { background: #f2f4fa; }
+tr.correct-row { background: var(--pink-bg); }
+
+.answer-callout {
+  background: var(--ink);
+  color: #fff;
+  border-radius: 14px;
+  padding: 16px 20px;
+  font-weight: bold;
+  font-size: 1.05rem;
+}
+.answer-kicker {
+  display: inline-block;
+  background: var(--marker);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 2px 12px;
+  font-size: 0.8rem;
+  margin-right: 10px;
+}
+
+.footnote { color: var(--ink-soft); font-size: 0.8rem; text-align: center; }
+
+footer.site-footer {
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+  padding: 24px 20px 60px;
+}
+.contact-link {
+  color: var(--ink-soft);
+  text-decoration: underline;
+}
+@media (max-width: 480px) {
+  .bubble-row .avatar { width: 108px; height: 108px; }
+  .bubble { max-width: calc(100% - 130px); }
+  header.hero h1 { font-size: 1.35rem; }
+  .character-card { flex-direction: column; text-align: center; }
+  .character-card img { width: 160px; height: 160px; }
+}
+
+</style>
+<script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1e557915580844ab85372ac0e8263b4d"}'></script>
+</head>
+<body>
+<div class="post-nav">
+  <div class="post-nav-buttons">
+    <a class="post-nav-btn post-nav-btn-note" href="https://note.com/cute_camel1259/n/n6cf51a4b5465">noteで全108話を購入する</a>
+    <a class="post-nav-btn" href="index.html">無料の一覧に行く</a>
+    <a class="post-nav-btn post-nav-btn-primary" href="https://buy.stripe.com/5kQ9AM7eobaF9pf0UL33W02">全108話を購入する（300円）</a>
+  </div>
+</div>
+<header class="hero">
+<h1>【第10話】押してるんでしょ？｜ITパスポート 令和6年度 問76</h1>
+<p class="tagline">～ツンデレ女子大生と東大パソコンオタクの、ちょっと不器用な勉強会～</p>
+<p class="ep-badge">第10話｜第1部　場所：拓也の家</p>
+</header>
+<main>
+<section class="scene"><h2>登場人物</h2>
+<div class="character-card misaki">
+  <img src="images/characters/misaki/女性普段着/女性ツンとしている.png" alt="美咲">
+  <div>
+    <p class="character-name">美咲<span>（みさき）</span></p>
+    <p class="character-desc">女子大生。就活のエントリーシートの資格欄が真っ白なことに気づき、慌ててITパスポートの勉強を開始。ITは完全に素人。高校時代は可愛くて人気者だったので、ちょっとプライドが高い。素直じゃない。</p>
+  </div>
+</div>
+<div class="character-card takuya">
+  <img src="images/characters/takuya/男性斜め左向き.png" alt="拓也">
+  <div>
+    <p class="character-name">拓也<span>（たくや）</span></p>
+    <p class="character-desc">美咲の高校時代の同級生。東京大学工学部。子どもの頃からパソコンばかりいじってきた生粋のオタク。実は美咲のことが好きだが、10年近く言い出せていない。教えるのは得意だが、口が悪いのが玉に瑕。</p>
+  </div>
+</div>
+<img class="location-illustration" src="images/illustrations/拓也の部屋.png" alt="拓也の家">
+</section>
+<section class="scene"><h2>今日の問題</h2>
+<div class="quiz-card">
+  <p class="quiz-kicker">今日の問題</p>
+  <p class="quiz-question">スマートフォンなどのタッチパネルで広く採用されている方式であり、指がタッチパネルの表面に近づいたときに、その位置を検出する方式はどれか。</p>
+  <ul class="quiz-choices">
+<li><span class="choice-label">ア</span><span>感圧式</span></li>
+<li><span class="choice-label">イ</span><span>光学式</span></li>
+<li><span class="choice-label">ウ</span><span>静電容量方式</span></li>
+<li><span class="choice-label">エ</span><span>電磁誘導方式</span></li>
+  </ul>
+</div>
+</section>
+<section class="scene"><h2>第1幕：初めての部屋</h2>
+<p class="narration">拓也の部屋。自作PCが2台、ディスプレイが3枚、隅にはペンタブレットまで置いてある。美咲が物珍しそうにあちこち見回している。</p>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>……あんたの部屋、初めて入ったけど、想像以上に機材だらけね</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性謝る.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>あ、汚くてごめん、昨日ちょっと急いで片付けたから、まだ配線とか出しっぱなしで……</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性2.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>別に責めてないわよ。むしろ、なんかあんたらしくて安心した</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>それ、褒められてる？</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性3.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>さあ、どうかしら。……で、今日はこの部屋で勉強会ってことでいいのよね</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>うん。ちょうどいいから、今日は身近な道具を使って説明するね</p>
+  </div>
+</div>
+<p class="narration">拓也が自分のスマートフォンをテーブルに置く。</p>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>このタッチパネル、今日の問題にまるっと関係あるんだ</p>
+  </div>
+</div>
+</section>
+<section class="scene"><h2>第2幕：押してるから反応してる、でしょ？</h2>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性4.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>じゃあ答えるわね。これ<strong>ア　感圧式</strong>でしょ</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>お、なんでそう思った？</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>だって、指で画面<strong>押して</strong>操作してるじゃない。押した力を感じ取ってるから反応する、感圧式で合ってると思ったんだけど</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>気持ちはすごくわかる。でも実は、<strong>スマホの画面って、そんなに強く押し込んでない</strong>んだよね</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性2.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>え、そう？　結構ぐいぐい押してる気がするけど</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>試しに、指の腹をそーっと、触れるか触れないかくらいの力で画面に近づけてみて</p>
+  </div>
+</div>
+<p class="narration">美咲が言われた通り、画面すれすれに指を近づける。反応して、アイコンがふわっと光る。</p>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性3.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>……え、まだ触ってすらないのに、反応した</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>でしょ？　<strong>"押す力"は関係ない</strong>んだ。だから、答えは感圧式じゃないんだよ</p>
+  </div>
+</div>
+</section>
+<section class="scene"><h2>第3幕：指先の"見えない静電気"</h2>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性自信顔.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>正解は<strong>ウ　静電容量方式</strong>。今のスマホのほとんどが、これを採用してる</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性4.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>せいでんようりょう……。なにそれ、静電気と関係あるの？</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性自信顔.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>まさにその通り。たとえ話するね。<strong>下敷きを頭にこすりつけて、髪の毛が逆立つやつ</strong>、やったことある？</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>あるある、小学生のときにやったわ</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>あれ、下敷きと髪の毛の間で<strong>静電気</strong>が発生してるからなんだ。実は人間の体って<strong>導体</strong>で、<strong>電気を通す</strong>んだ</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性2.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>え、私の体、電気が通るの？</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>うん、通るんだ。タッチパネルの表面には、<strong>目に見えないくらい細かい格子状の電極</strong>が敷き詰められてて、そこにうっすら電気が流れてるんだ。<strong>指がそこに近づくと、電気を通す指を通して、その場所の電気の状態がわずかに変化する</strong></p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性3.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>その変化を、パネルが検知してるってこと？</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性自信顔.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p><strong>そういうこと！</strong>　"どこで電気の状態が変わったか"を計算すれば、指がどこにあるかピンポイントでわかる。だから、強く押す必要はなくて、<strong>軽く触れる、もしくは近づけるだけで反応する</strong>んだ</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性4.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>……あー！　そういうことか！　"押した力"を検知してるんじゃなくて、"指を通した電気の変化"を検知してたのね</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性自信顔.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p><strong>完璧</strong>。だから、冬に手袋したままスマホ触ろうとして反応しない、ってこと、あるでしょ？</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>ある！　めちゃくちゃイライラする</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>あれは、<strong>手袋の素材が電気を通さないから、指を通しての静電気がパネルまで伝わらない</strong>んだ。だから反応しない。逆に、指先だけ出せるタッチ対応の手袋は、そこだけ電気を通す素材を使ってる</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性2.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>……なるほどね。あの手袋、ちゃんと理屈があったのね</p>
+  </div>
+</div>
+</section>
+<section class="scene"><h2>第4幕：拓也、スクショを撮ろうとする</h2>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>にしても、感圧式って答えたの、ちょっと面白かったな。押してる感覚、あるもんね</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性怒っている.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>うるさいわね、直感で答えただけだから</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>いや、悪い意味じゃなくて。……あ、今の『押してるから感圧式でしょ』のくだり、なんかいいから、あとで見返せるようにメモしとこ</p>
+  </div>
+</div>
+<p class="narration">拓也がスマホを取り出し、何やら操作を始める。</p>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性3.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>ちょっと、なにしてるの</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>いや、今のやり取り、教材として面白いなと思って、記録に残しておこうかなって</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性4.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>……もしかして、私の勘違い、スクショでも撮ろうとしてる？</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>バレた？</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>バレたじゃないわよ！　人の失敗、面白がって保存しないでくれる？</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>いや、馬鹿にしてるわけじゃなくて、純粋に『わかりやすい誤答パターンだ』と思って……</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性2.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>理由はどうあれ、証拠隠滅するから、それ消して</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>わ、わかった、消します</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性ツンとしている.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>……ふん。次から、人の言い間違いをおもしろがるの、やめなさいよね</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>以後、気をつけます</p>
+  </div>
+</div>
+</section>
+<section class="scene"><h2>第5幕：残りの選択肢を片付ける</h2>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>じゃあ、残りの<strong>イ</strong>と<strong>エ</strong>も見ておこうか</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性3.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>イは『光学式』……これも聞いたことあるようなないような</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>光学式は、<strong>赤外線やカメラを使って、指の位置を光学的に検出する</strong>方式。大きなデジタルサイネージとか、一部の業務用タッチパネルで使われてる。スマホみたいな小さい画面にはあまり使われないんだ</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性4.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>じゃあエの『電磁誘導方式』は？</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>あ、それはこれ</p>
+  </div>
+</div>
+<p class="narration">拓也が隅に置いてあったペンタブレットを持ってくる。</p>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>これ、絵を描くときに使うペンタブレットなんだけど、専用のペンから出る<strong>電磁波</strong>をパネル側が検知して位置を読み取る方式なんだ。だから、<strong>普通の指では反応しない</strong></p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>あ、だからあんた、これ指で触っても何も起きなかったのね。専用ペンじゃないと反応しないんだ</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性自信顔.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>正解。ちなみにSurfaceとかのペン入力対応タブレットも、これに近い仕組みを使ってることが多いよ</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性2.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>なるほど……。感圧式、光学式、静電容量方式、電磁誘導方式。全部『タッチを検知する』のは同じでも、<strong>何を検知してるかが全部違う</strong>のね</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p><strong>そのとおり</strong>。力を検知するのか、光を検知するのか、静電気を検知するのか、専用ペンの電磁波を検知するのか。この4つのどれかを聞かれたら、この軸で整理するといいよ</p>
+  </div>
+</div>
+<div class="quiz-card recap">
+  <p class="quiz-kicker">問題文（再掲）</p>
+  <p class="quiz-question">スマートフォンなどのタッチパネルで広く採用されている方式であり、指がタッチパネルの表面に近づいたときに、その位置を検出する方式はどれか。</p>
+  <ul class="quiz-choices">
+<li><span class="choice-label">ア</span><span>感圧式</span></li>
+<li><span class="choice-label">イ</span><span>光学式</span></li>
+<li><span class="choice-label">ウ</span><span>静電容量方式</span></li>
+<li><span class="choice-label">エ</span><span>電磁誘導方式</span></li>
+  </ul>
+</div>
+</section>
+<section class="scene"><h2>まとめ：選択肢ごとの答え合わせ</h2>
+<div class="table-wrap"><table><thead><tr><th>選択肢</th><th>方式</th><th>検知するもの</th><th>正誤</th></tr></thead><tbody><tr class="correct-row"><td>ア</td><td>感圧式</td><td>画面にかかる圧力</td><td>不正解</td></tr>
+<tr class="correct-row"><td>イ</td><td>光学式</td><td>赤外線や光による位置検出</td><td>不正解</td></tr>
+<tr class="correct-row"><td><strong>ウ</strong></td><td><strong>静電容量方式</strong></td><td><strong>指先の静電気による電気の変化</strong></td><td><strong>正解</strong></td></tr>
+<tr class="correct-row"><td>エ</td><td>電磁誘導方式</td><td>専用ペンが発する電磁波</td><td>不正解</td></tr></tbody></table></div>
+<p class="answer-callout"><span class="answer-kicker">答え</span>ウ　静電容量方式</p>
+</section>
+<section class="scene"><h2>覚え方のコツ</h2>
+<blockquote class="callout"><p><strong>押した力じゃなくて、指の"静電気"を読んでいる。</strong></p></blockquote>
+<ul class="plain-list"><li>静電容量方式は、<strong>軽く触れる・近づけるだけ</strong>で反応する。押し込む力は関係ない</li><li>手袋で反応しないのは、<strong>電気を通さない素材が静電気を遮っているから</strong></li><li>電磁誘導方式は<strong>専用ペンの電磁波</strong>を検知するので、素手では反応しない</li></ul>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>『押した力』を検知してるように感じるのは、あくまで<strong>"触れた感触"があるから錯覚してるだけ</strong>で、実際にパネルが見てるのは<strong>電気の変化</strong>なんだ。この感覚のズレを知ってるだけで、この手の問題にはかなり強くなるよ</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性3.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>体感と、実際の仕組みが違うパターン、ITあるあるね</p>
+  </div>
+</div>
+<h3>おまけ：なぜ静電容量方式が主流になったの？</h3>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>静電容量方式は、<strong>軽くなぞるだけで反応するから操作がなめらか</strong>なんだ。スワイプやピンチ操作みたいな直感的な操作と相性がいい。感圧式だと、しっかり押し込む必要があるから、あの滑らかな操作感は出しにくいんだよね</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性4.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>たしかに、今のスマホの操作、力入れてないもんね</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>そう。だから今のスマートフォンやタブレットのほとんどが、静電容量方式を採用してるんだ</p>
+  </div>
+</div>
+</section>
+<section class="scene"><h2>エピローグ</h2>
+<p class="narration">美咲がもう一度、自分のスマホの画面をそっと指でなぞる。</p>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>……ほんとだ、全然力入れてない</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>でしょ？</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性2.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>ねえ、これって、別に私の指じゃなくても反応するのよね。静電気があれば、誰の指でも</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>うん、基本的には誰でも。人間の体は大体、微弱な電気を帯びてるから</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性3.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>……ふうん。なんか、複雑ね</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>複雑？</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性4.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>なんでもない。……ただ、あんたも少しはこのパネルくらい、素直に反応しなさいよね</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性驚く.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>え、俺が？　何に対して</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>知らないわよ、自分で考えなさい</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya thought">
+    <p class="speaker-name">拓也<span class="thought-tag">心の声</span></p>
+    <p>……いや、それ考えたら余計にドキドキするやつなんだけど</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性2.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>なによ、黙り込んで</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>いや、なんでもない。……今日、部屋まで来てくれてありがとう</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性3.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>……うん。次も、ここでいい？</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>もちろん</p>
+  </div>
+</div>
+</section>
+<section class="scene"><h2>今日のポイントおさらい</h2>
+<ol class="recap-list"><li><strong>静電容量方式＝指先の静電気による電気の変化を検知するタッチパネル方式</strong></li><li>押した"力"は関係なく、<strong>軽く触れる・近づけるだけ</strong>で反応する</li><li>手袋で反応しないのは、<strong>電気を通さない素材が静電気を遮ってしまう</strong>ため</li><li>電磁誘導方式は<strong>専用ペンの電磁波</strong>を検知する方式で、素手では反応しない</li><li>感圧式・光学式・静電容量方式・電磁誘導方式は、<strong>それぞれ検知しているものが違う</strong></li></ol>
+<p class="narration">次回もお楽しみに。</p>
+<p class="footnote">この記事はITパスポート試験 令和6年度 問76（テクノロジ系／ハードウェア）の解説です。</p>
+</section>
+</main>
+<div class="post-nav">
+  <div class="post-nav-buttons">
+    <a class="post-nav-btn post-nav-btn-note" href="https://note.com/cute_camel1259/n/n6cf51a4b5465">noteで全108話を購入する</a>
+    <a class="post-nav-btn" href="index.html">無料の一覧に行く</a>
+    <a class="post-nav-btn post-nav-btn-primary" href="https://buy.stripe.com/5kQ9AM7eobaF9pf0UL33W02">全108話を購入する（300円）</a>
+  </div>
+</div>
+<footer class="site-footer">
+  <p>ITパスポート過去問 ラブコメ解説</p>
+  <p><a class="contact-link" href="mailto:puniee.work@gmail.com?subject=IT%E3%83%91%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E9%81%8E%E5%8E%BB%E5%95%8F%20%E3%83%A9%E3%83%96%E3%82%B3%E3%83%A1%E8%A7%A3%E8%AA%AC%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">お問い合わせ</a>　<a class="contact-link" href="tokushoho.html">特定商取引法に基づく表記</a>　<a class="contact-link" href="privacy.html">プライバシーポリシー</a></p>
+</footer>
+</body>
+</html>

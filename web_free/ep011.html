@@ -1,0 +1,869 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>【第11話】それVRでしょ？｜ITパスポート ラブコメ解説</title>
+<meta name="description" content="それVRでしょ？｜ツンデレ女子大生と東大パソコンオタクの、ちょっと不器用な勉強会。ITパスポート過去問（令和6年度 問25）を実際の過去問で解説。">
+<link rel="canonical" href="https://itp-lovecome1-free.puniee-work.com/ep011.html">
+<meta name="google-site-verification" content="0-v6CVaNU3h9D5Yw373vGnZ5f5Cju0XpfsWTc2XBGVM">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ITパスポート過去問 ラブコメ♥解説">
+<meta property="og:title" content="【第11話】それVRでしょ？｜ITパスポート ラブコメ解説">
+<meta property="og:description" content="それVRでしょ？｜ツンデレ女子大生と東大パソコンオタクの、ちょっと不器用な勉強会。ITパスポート過去問（令和6年度 問25）を実際の過去問で解説。">
+<meta property="og:url" content="https://itp-lovecome1-free.puniee-work.com/ep011.html">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://itp-lovecome1-free.puniee-work.com/images/ep011/thumb.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="【第11話】それVRでしょ？｜ITパスポート ラブコメ解説">
+<meta name="twitter:description" content="それVRでしょ？｜ツンデレ女子大生と東大パソコンオタクの、ちょっと不器用な勉強会。ITパスポート過去問（令和6年度 問25）を実際の過去問で解説。">
+<meta name="twitter:image" content="https://itp-lovecome1-free.puniee-work.com/images/ep011/thumb.png">
+<style>
+
+:root {
+  --ink: #1f2337;
+  --ink-soft: #5f6782;
+  --pink: #ff6b8a;
+  --pink-bg: #ffe7ed;
+  --pink-ln: #ffb0c3;
+  --blue: #2f6fed;
+  --blue-bg: #e2ecff;
+  --blue-ln: #a3c1ff;
+  --marker: #ffe066;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Hiragino Sans", "Noto Sans JP", system-ui, sans-serif;
+  color: var(--ink);
+  background: linear-gradient(135deg, #fff3f6 0%, #e9f0ff 100%);
+  line-height: 1.85;
+}
+main, header.hero, footer.site-footer {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.back-to-index {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 6px;
+  margin: 18px auto 0;
+  padding: 10px 22px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #fff;
+  background: var(--blue);
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(47,111,237,0.3);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.back-to-index:hover, .back-to-index:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(47,111,237,0.4);
+}
+.back-to-index-bottom {
+  margin: 32px auto 40px;
+}
+
+.post-nav {
+  max-width: 640px;
+  margin: 8px auto 0;
+  padding: 20px;
+  background: #fff;
+  border: 2px solid var(--pink-ln);
+  border-radius: 16px;
+  text-align: center;
+}
+.post-nav-title {
+  margin: 0 0 12px;
+  font-weight: bold;
+  color: var(--pink);
+  font-size: 0.95rem;
+}
+.post-nav-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+.post-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 18px;
+  border-radius: 999px;
+  font-weight: bold;
+  font-size: 0.85rem;
+  text-decoration: none;
+  color: var(--ink);
+  background: #fff;
+  border: 2px solid var(--blue-ln);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.post-nav-btn:hover, .post-nav-btn:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(31,35,55,0.1);
+}
+.post-nav-btn-primary {
+  color: #fff;
+  background: var(--blue);
+  border-color: var(--blue);
+  box-shadow: 0 4px 14px rgba(47,111,237,0.3);
+}
+.post-nav-btn-note {
+  color: #000;
+  background: #ff8a00;
+  border-color: #ff8a00;
+}
+header.hero {
+  padding-top: 16px;
+  text-align: center;
+}
+header.hero h1 {
+  font-size: 1.7rem;
+  margin: 0 0 12px;
+}
+.tagline { color: var(--ink-soft); font-size: 0.9rem; margin: 0 0 8px; }
+.ep-badge {
+  display: inline-block;
+  background: var(--ink);
+  color: #fff;
+  padding: 6px 18px;
+  border-radius: 999px;
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+section.scene {
+  background: rgba(255,255,255,0.6);
+  border-radius: 18px;
+  padding: 28px 24px;
+  margin: 28px 0;
+}
+section.scene h2 {
+  font-size: 1.15rem;
+  margin: 0 0 20px;
+  padding-left: 14px;
+  border-left: 6px solid var(--pink);
+}
+h3 { font-size: 1rem; margin: 20px 0 10px; }
+
+.character-card {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  background: #fff;
+  border-radius: 14px;
+  padding: 14px;
+  margin: 14px 0;
+  border: 2px solid var(--pink-ln);
+}
+.character-card.takuya { border-color: var(--blue-ln); }
+.character-card img {
+  width: 216px; height: 216px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top center;
+  flex: none;
+}
+.character-name { margin: 0 0 4px; font-weight: bold; }
+.character-name span { font-weight: normal; color: var(--ink-soft); font-size: 0.85rem; margin-left: 4px; }
+.character-desc { margin: 0; font-size: 0.9rem; color: var(--ink-soft); }
+
+.location-illustration {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 16px;
+  margin: 18px 0 6px;
+  box-shadow: 0 6px 20px rgba(31,35,55,0.12);
+}
+
+.quiz-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 16px rgba(31,35,55,0.08);
+}
+.quiz-kicker { color: var(--pink); font-weight: bold; font-size: 0.8rem; margin: 0 0 8px; }
+.quiz-card.recap {
+  border: 3px solid #e0203c;
+}
+.quiz-card.recap .quiz-kicker { font-size: 1.15rem; }
+.quiz-question { font-weight: bold; margin: 0 0 16px; }
+.quiz-choices { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.quiz-choices li {
+  display: flex; gap: 10px; align-items: baseline;
+  background: #f7f8fb; border-radius: 10px; padding: 10px 14px;
+}
+.choice-label {
+  font-weight: bold; color: var(--pink); flex: none;
+}
+
+blockquote.callout {
+  background: var(--marker);
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin: 16px 0;
+  font-weight: bold;
+}
+blockquote.callout p { margin: 0; }
+
+.bubble-row { display: flex; gap: 10px; margin: 14px 0; align-items: center; }
+.bubble-row.takuya { flex-direction: row-reverse; }
+.bubble-row .avatar {
+  width: 192px; height: 192px; border-radius: 50%; object-fit: cover; object-position: center center; flex: none;
+  border: 3px solid rgba(255,255,255,0.9); box-shadow: 0 2px 6px rgba(31,35,55,0.12);
+}
+.bubble {
+  background: var(--pink-bg);
+  border: 2px solid var(--pink-ln);
+  border-radius: 16px;
+  padding: 10px 16px;
+  max-width: calc(100% - 220px);
+}
+.bubble.takuya { background: var(--blue-bg); border-color: var(--blue-ln); }
+.bubble.thought { border-style: dashed; opacity: 0.9; }
+.bubble p { margin: 0; }
+.bubble .speaker-name { font-size: 0.75rem; font-weight: bold; color: var(--ink-soft); margin: 0 0 2px; }
+.thought-tag {
+  font-weight: normal; font-size: 0.7rem; margin-left: 6px;
+  border: 1px solid var(--ink-soft); border-radius: 999px; padding: 0 6px;
+}
+
+.narration {
+  text-align: center;
+  color: var(--ink-soft);
+  font-style: italic;
+  font-size: 0.9rem;
+  margin: 18px 0;
+}
+
+.plain-list, .recap-list { padding-left: 1.4em; }
+.plain-list li, .recap-list li { margin: 6px 0; }
+
+.table-wrap { overflow-x: auto; margin: 16px 0; }
+table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+th, td { border: 1px solid #dfe3ee; padding: 8px 10px; text-align: left; }
+th { background: #f2f4fa; }
+tr.correct-row { background: var(--pink-bg); }
+
+.answer-callout {
+  background: var(--ink);
+  color: #fff;
+  border-radius: 14px;
+  padding: 16px 20px;
+  font-weight: bold;
+  font-size: 1.05rem;
+}
+.answer-kicker {
+  display: inline-block;
+  background: var(--marker);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 2px 12px;
+  font-size: 0.8rem;
+  margin-right: 10px;
+}
+
+.footnote { color: var(--ink-soft); font-size: 0.8rem; text-align: center; }
+
+footer.site-footer {
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+  padding: 24px 20px 60px;
+}
+.contact-link {
+  color: var(--ink-soft);
+  text-decoration: underline;
+}
+@media (max-width: 480px) {
+  .bubble-row .avatar { width: 108px; height: 108px; }
+  .bubble { max-width: calc(100% - 130px); }
+  header.hero h1 { font-size: 1.35rem; }
+  .character-card { flex-direction: column; text-align: center; }
+  .character-card img { width: 160px; height: 160px; }
+}
+
+</style>
+<script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1e557915580844ab85372ac0e8263b4d"}'></script>
+</head>
+<body>
+<div class="post-nav">
+  <div class="post-nav-buttons">
+    <a class="post-nav-btn post-nav-btn-note" href="https://note.com/cute_camel1259/n/n6cf51a4b5465">noteで全108話を購入する</a>
+    <a class="post-nav-btn" href="index.html">無料の一覧に行く</a>
+    <a class="post-nav-btn post-nav-btn-primary" href="https://buy.stripe.com/5kQ9AM7eobaF9pf0UL33W02">全108話を購入する（300円）</a>
+  </div>
+</div>
+<header class="hero">
+<h1>【第11話】それVRでしょ？｜ITパスポート 令和6年度 問25</h1>
+<p class="tagline">～ツンデレ女子大生と東大パソコンオタクの、ちょっと不器用な勉強会～</p>
+<p class="ep-badge">第11話｜第1部　場所：スーパー・商店街</p>
+</header>
+<main>
+<section class="scene"><h2>登場人物</h2>
+<div class="character-card misaki">
+  <img src="images/characters/misaki/女性普段着/女性照れ.png" alt="美咲">
+  <div>
+    <p class="character-name">美咲<span>（みさき）</span></p>
+    <p class="character-desc">女子大生。就活のエントリーシートの資格欄が真っ白なことに気づき、慌ててITパスポートの勉強を開始。ITは完全に素人。高校時代は可愛くて人気者だったので、ちょっとプライドが高い。素直じゃない。</p>
+  </div>
+</div>
+<div class="character-card takuya">
+  <img src="images/characters/takuya/男性斜め左向き.png" alt="拓也">
+  <div>
+    <p class="character-name">拓也<span>（たくや）</span></p>
+    <p class="character-desc">美咲の高校時代の同級生。東京大学工学部。子どもの頃からパソコンばかりいじってきた生粋のオタク。実は美咲のことが好きだが、10年近く言い出せていない。教えるのは得意だが、口が悪いのが玉に瑕。</p>
+  </div>
+</div>
+<img class="location-illustration" src="images/illustrations/商店街.png" alt="スーパー・商店街">
+</section>
+<section class="scene"><h2>今日の問題</h2>
+<div class="quiz-card">
+  <p class="quiz-kicker">今日の問題</p>
+  <p class="quiz-question">史跡などにスマートフォンを向けると、昔あった建物の画像や説明情報を現実の風景と重ねるように表示して、観光案内ができるようにした。ここで活用した技術の組み合わせを表す用語として、最も適切なものはどれか。</p>
+  <ul class="quiz-choices">
+<li><span class="choice-label">ア</span><span>AR</span></li>
+<li><span class="choice-label">イ</span><span>GUI</span></li>
+<li><span class="choice-label">ウ</span><span>VR</span></li>
+<li><span class="choice-label">エ</span><span>メタバース</span></li>
+  </ul>
+</div>
+</section>
+<section class="scene"><h2>第1幕：珍しく美咲から</h2>
+<p class="narration">拓也のスマホが振動する。画面には「美咲」の文字。今までは、勉強会の約束はいつも会っているときに直接決まっていた。美咲の方からわざわざ連絡してくるのは、これが初めてだった。</p>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>もしもし？</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>あ、もしもし。……今、暇？</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>暇だけど、どうしたの、珍しく連絡くれるなんて</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性照れ.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>べ、別に理由なんてないけど。……商店街のとこに、なんか面白いアプリのポスター貼ってあって。史跡にスマホかざすと、昔の建物が見えるとかなんとか。あんた、こういうの詳しそうだから、一緒に見てみない？</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>行く行く。今から向かう</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性2.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>即答しすぎ</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性驚く.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>え、ダメだった？</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性3.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>別にダメじゃないけど……。じゃ、商店街の入り口で待ってるから</p>
+  </div>
+</div>
+<p class="narration">電話を切ったあと、拓也はしばらくスマホの画面を見つめたまま動けなかった。</p>
+</section>
+<section class="scene"><h2>第2幕：現実に重なるなら、VRでしょ？</h2>
+<p class="narration">商店街の入り口、古い神社の鳥居の前。美咲がスマホを構えて、案内アプリを試している。画面の中では、鳥居の奥に、昔あった木造の社殿らしきCGが現実の風景に重なって表示されている。</p>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性4.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>見て見て、すごい！　今は無い建物なのに、ここにあったみたいに見える！</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>お、ちょうどいいや。それ、今日の問題にそのまま出てくる技術だよ</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>え、ほんとに？</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>うん。この体験に使われてる技術、何だと思う？</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性2.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>じゃあ答えるわね。これ、<strong>ウ　VR</strong>でしょ</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>お、なんでVR？</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性3.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>だって、目の前に無いはずの建物が見えてるわけでしょ。バーチャルってことは、VRじゃないの？</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>発想は近いんだけど、実は<strong>VRとAR、ここで求められてるものが正反対</strong>なんだ</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性4.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>正反対？</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>うん。ちょっと整理しながら見ていこうか</p>
+  </div>
+</div>
+</section>
+<section class="scene"><h2>第3幕：現実に貼る付箋か、別世界のゴーグルか</h2>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>まず<strong>VR＝Virtual Reality（仮想現実）</strong>。これは、<strong>完全に別の仮想世界に入り込む</strong>技術。専用のゴーグルをつけると、現実の景色は一切見えなくなって、視界の全部が作られた世界に置き換わる</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>あ、あのゴーグルつけてゲームやるやつ</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>そうそう。<strong>現実を"置き換える"</strong>のがVRの本質</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性2.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>じゃあ、今スマホでやってるこれは……</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>これが<strong>AR＝Augmented Reality（拡張現実）</strong>。<strong>現実の景色はそのまま残したうえで、情報を"重ねて"表示する</strong>技術。目の前の鳥居も現実そのままで、そこに昔の社殿のCGが<strong>付箋みたいに貼り付いてる</strong>イメージ</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性3.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>付箋……</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>そう。<strong>紙の地図の上に、透明なシートを重ねて、そこに書き込みを足していく</strong>感じ。現実そのものは消えずに残ってて、その上に追加情報が乗ってるだけ、っていうのがARなんだ</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性4.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>……あー！　そういうことか！　VRは現実を"消して置き換える"、ARは現実を"残したまま重ねる"。真逆どころか、<strong>残すか消すかが正反対</strong>なのね</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性自信顔.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p><strong>完璧</strong>。だから、今スマホの画面で鳥居がちゃんと現実のまま映ってて、そこに建物のCGだけが重なってるこの体験は、まさにARの定義そのものなんだよ</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>なるほど……。じゃあ、なんで問題文には『技術の"組み合わせ"』って書いてあるの？</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性自信顔.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>いい質問。ARを実現するには、<strong>カメラで今の景色を認識する技術</strong>と、<strong>GPSやセンサーでその場所を特定する技術</strong>と、<strong>そこに正しい位置でCGを重ねて描画する技術</strong>、これらを組み合わせて初めて成立するんだ。だから単体の技術というより、"複数の技術の合わせ技"って言われることが多い</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性2.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>へえ、意外と裏側は複雑なのね</p>
+  </div>
+</div>
+</section>
+<section class="scene"><h2>第4幕：拓也、無意識に比較してしまう</h2>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>ちなみにこの手のARアプリ、うちの研究室の後輩とかは普通に授業の課題で作ってたりするから、正直そんなに難しい技術でもないんだよね</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性3.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>……は？</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>あ、いや、美咲がすごくないって意味じゃなくて、技術的にはそこまで珍しくない、っていう話で</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性4.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>なんか今、さらっと『後輩は普通に作ってた』とか言わなかった？</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性頭を掻く.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>あ……</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>あんた、たまにそうやって、他の誰かと比較する言い方するわよね。『研究室の後輩は』とか『サークルの人は』とか。悪気ないのはわかるけど、こっちは素人なんだから、ちょっと傷つくんだけど</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性謝る.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>……ごめん。無意識だった。比べるつもりはなかったんだけど</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性2.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>無意識だからこそ、直したほうがいいと思うわよ。誰かと比べられるの、あんまり気分いいものじゃないから</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性謝る.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>肝に銘じます。……ほんとにごめん</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性ツンとしている.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>……ふん、わかればいいのよ。ちゃんと次から気をつけなさいよね</p>
+  </div>
+</div>
+</section>
+<section class="scene"><h2>第5幕：残りの選択肢を片付ける</h2>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>気を取り直して、残りの<strong>イ</strong>と<strong>エ</strong>ね</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性3.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>イは『GUI』……これ、なんか聞いたことある単語な気がする</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>GUIは<strong>Graphical User Interface</strong>の略で、<strong>アイコンやボタンを使って、視覚的に操作できる画面の仕組み</strong>のこと。今どきのパソコンやスマホの画面は、ほとんどこれ</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性4.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>あ、それって、AR/VRとは全然カテゴリー違う話よね</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>そのとおり。GUIは<strong>"操作方法"の話</strong>であって、<strong>"現実か仮想か"の話じゃない</strong>んだ。だから、ここでは仲間外れの選択肢</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>じゃあ最後の『メタバース』は？</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>メタバースは、<strong>インターネット上に作られた仮想空間で、自分の分身（アバター）を通じて、他の人たちと交流したり活動したりする世界</strong>のこと。VRゴーグルを使うことも多いけど、パソコンやスマホから参加できるものもある</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性2.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>あ、なんかゲームの中でみんなで集まってるみたいな、あれ？</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>まさにそれ。<strong>VRが"技術"の名前だとしたら、メタバースは"その技術を使って作られた、仮想の街や空間そのもの"</strong>っていうイメージ。今回の問題は、現実の史跡にCGを重ねる話だから、メタバースとは方向性が違う</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性3.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>なるほど……。AR、VR、GUI、メタバース。全部『画面に何か表示される』話ではあるけど、<strong>何を目的にしてるかが全部バラバラ</strong>だったのね</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p><strong>そのとおり</strong>。似たカタカナ用語が並ぶと混乱しがちだけど、"現実を残すか消すか""操作の話か空間の話か"で切り分けると、けっこうスッキリするよ</p>
+  </div>
+</div>
+<div class="quiz-card recap">
+  <p class="quiz-kicker">問題文（再掲）</p>
+  <p class="quiz-question">史跡などにスマートフォンを向けると、昔あった建物の画像や説明情報を現実の風景と重ねるように表示して、観光案内ができるようにした。ここで活用した技術の組み合わせを表す用語として、最も適切なものはどれか。</p>
+  <ul class="quiz-choices">
+<li><span class="choice-label">ア</span><span>AR</span></li>
+<li><span class="choice-label">イ</span><span>GUI</span></li>
+<li><span class="choice-label">ウ</span><span>VR</span></li>
+<li><span class="choice-label">エ</span><span>メタバース</span></li>
+  </ul>
+</div>
+</section>
+<section class="scene"><h2>まとめ：選択肢ごとの答え合わせ</h2>
+<div class="table-wrap"><table><thead><tr><th>選択肢</th><th>用語</th><th>特徴</th><th>正誤</th></tr></thead><tbody><tr class="correct-row"><td><strong>ア</strong></td><td><strong>AR（拡張現実）</strong></td><td><strong>現実の景色に情報を重ねて表示する</strong></td><td><strong>正解</strong></td></tr>
+<tr class="correct-row"><td>イ</td><td>GUI</td><td>アイコンやボタンで視覚的に操作する画面の仕組み</td><td>不正解（操作方法の話）</td></tr>
+<tr class="correct-row"><td>ウ</td><td>VR（仮想現実）</td><td>現実を完全に置き換え、別の仮想世界に没入する</td><td>不正解（現実を消す方）</td></tr>
+<tr class="correct-row"><td>エ</td><td>メタバース</td><td>仮想空間でアバターを通じて交流・活動する世界</td><td>不正解（空間そのものの話）</td></tr></tbody></table></div>
+<p class="answer-callout"><span class="answer-kicker">答え</span>ア　AR</p>
+</section>
+<section class="scene"><h2>覚え方のコツ</h2>
+<blockquote class="callout"><p><strong>現実に"透明な付箋"を貼るのがAR、現実を"置き換える"のがVR。</strong></p></blockquote>
+<ul class="plain-list"><li>AR＝<strong>現実＋情報の重ね表示</strong>。現実の景色はそのまま残る</li><li>VR＝<strong>現実を完全に置き換える</strong>。専用ゴーグルで別世界に没入する</li><li>GUI＝<strong>操作方法の話</strong>。AR/VRとはそもそも軸が違う</li><li>メタバース＝<strong>VRなどを使って作られた、仮想の空間や街そのもの</strong></li></ul>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>『AR』と『VR』、文字が似てて紛らわしいけど、<strong>"現実が残るか消えるか"</strong>を軸に考えると絶対に間違えなくなるよ。ARのAは"Augmented（拡張）"のA、現実に何かを"足す"イメージで覚えるといいかも</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性4.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>Vは……Virtualの"つくりもの"ってことね。じゃあ現実を消してつくりものに変える、と</p>
+  </div>
+</div>
+<h3>おまけ：ARが使われている身近な例</h3>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>今回みたいな観光案内のほかにも、家具のアプリで『自分の部屋に置いたらどう見えるか』を試せるやつとか、スマホゲームでキャラクターが現実の道に立ってるように見えるやつとか、身近なところにけっこうARは使われてるよ</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>あ、家具のやつ知ってる！　部屋にソファ置く前に試せるの、あれ地味に便利よね</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>そうそう。現実の空間はそのままで、そこに情報だけ重ねる、っていうARの強みが一番活きてる使い方だと思う</p>
+  </div>
+</div>
+</section>
+<section class="scene"><h2>エピローグ</h2>
+<p class="narration">商店街のアーケードを、二人で並んで歩いていく。美咲がもう一度スマホをかざすと、古い商店の跡地に、昔あった店構えのCGがふわりと浮かび上がる。</p>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性2.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>……なんか、いいわね、これ。無くなったものが、まだそこにあるみたいに見えるの</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>たしかに。記録として、いいよね</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性3.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>ねえ、あんたも、これくらい記憶力よくしなさいよね</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性驚く.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>え、AR関係なくない？</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性4.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>今日のこと、ちゃんと覚えておきなさい、って意味。……私から連絡したの、今日が初めてだったんだから</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>……うん、覚えとく。ちゃんと、記憶に重ねとく</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>なによ、その言い方</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>いや、なんか今日のARっぽいなと思って。現実の記憶に、今日のことをちゃんと重ねて残しておくって意味で</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性2.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>……理屈っぽいけど、悪くない言い方ね</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>褒められた？</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性3.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>さあ、どうかしら。……また、なんかあったら連絡するから</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>うん、待ってる</p>
+  </div>
+</div>
+</section>
+<section class="scene"><h2>今日のポイントおさらい</h2>
+<ol class="recap-list"><li><strong>AR（拡張現実）＝現実の景色はそのまま、情報を重ねて表示する技術</strong></li><li><strong>VR（仮想現実）＝現実を完全に置き換えて、別の仮想世界に没入する技術</strong></li><li>GUIは<strong>操作方法</strong>の話であり、AR/VRとはそもそもカテゴリーが違う</li><li>メタバースは<strong>VRなどを使って作られた、仮想の空間や街そのもの</strong></li><li>AR/VRの区別は、<strong>「現実が残るか、消えるか」</strong>で見分けるとわかりやすい</li></ol>
+<p class="narration">次回もお楽しみに。</p>
+<p class="footnote">この記事はITパスポート試験 令和6年度 問25（ストラテジ系／産業と業種）の解説です。</p>
+</section>
+</main>
+<div class="post-nav">
+  <div class="post-nav-buttons">
+    <a class="post-nav-btn post-nav-btn-note" href="https://note.com/cute_camel1259/n/n6cf51a4b5465">noteで全108話を購入する</a>
+    <a class="post-nav-btn" href="index.html">無料の一覧に行く</a>
+    <a class="post-nav-btn post-nav-btn-primary" href="https://buy.stripe.com/5kQ9AM7eobaF9pf0UL33W02">全108話を購入する（300円）</a>
+  </div>
+</div>
+<footer class="site-footer">
+  <p>ITパスポート過去問 ラブコメ解説</p>
+  <p><a class="contact-link" href="mailto:puniee.work@gmail.com?subject=IT%E3%83%91%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E9%81%8E%E5%8E%BB%E5%95%8F%20%E3%83%A9%E3%83%96%E3%82%B3%E3%83%A1%E8%A7%A3%E8%AA%AC%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">お問い合わせ</a>　<a class="contact-link" href="tokushoho.html">特定商取引法に基づく表記</a>　<a class="contact-link" href="privacy.html">プライバシーポリシー</a></p>
+</footer>
+</body>
+</html>

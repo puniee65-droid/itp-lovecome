@@ -1,0 +1,888 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>【第6話】メール設定が謎｜ITパスポート ラブコメ解説</title>
+<meta name="description" content="メール設定が謎｜ツンデレ女子大生と東大パソコンオタクの、ちょっと不器用な勉強会。ITパスポート過去問（令和3年度 問84）を実際の過去問で解説。">
+<link rel="canonical" href="https://itp-lovecome1-free.puniee-work.com/ep006.html">
+<meta name="google-site-verification" content="0-v6CVaNU3h9D5Yw373vGnZ5f5Cju0XpfsWTc2XBGVM">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ITパスポート過去問 ラブコメ♥解説">
+<meta property="og:title" content="【第6話】メール設定が謎｜ITパスポート ラブコメ解説">
+<meta property="og:description" content="メール設定が謎｜ツンデレ女子大生と東大パソコンオタクの、ちょっと不器用な勉強会。ITパスポート過去問（令和3年度 問84）を実際の過去問で解説。">
+<meta property="og:url" content="https://itp-lovecome1-free.puniee-work.com/ep006.html">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://itp-lovecome1-free.puniee-work.com/images/ep006/thumb.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="【第6話】メール設定が謎｜ITパスポート ラブコメ解説">
+<meta name="twitter:description" content="メール設定が謎｜ツンデレ女子大生と東大パソコンオタクの、ちょっと不器用な勉強会。ITパスポート過去問（令和3年度 問84）を実際の過去問で解説。">
+<meta name="twitter:image" content="https://itp-lovecome1-free.puniee-work.com/images/ep006/thumb.png">
+<style>
+
+:root {
+  --ink: #1f2337;
+  --ink-soft: #5f6782;
+  --pink: #ff6b8a;
+  --pink-bg: #ffe7ed;
+  --pink-ln: #ffb0c3;
+  --blue: #2f6fed;
+  --blue-bg: #e2ecff;
+  --blue-ln: #a3c1ff;
+  --marker: #ffe066;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Hiragino Sans", "Noto Sans JP", system-ui, sans-serif;
+  color: var(--ink);
+  background: linear-gradient(135deg, #fff3f6 0%, #e9f0ff 100%);
+  line-height: 1.85;
+}
+main, header.hero, footer.site-footer {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.back-to-index {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 6px;
+  margin: 18px auto 0;
+  padding: 10px 22px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #fff;
+  background: var(--blue);
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(47,111,237,0.3);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.back-to-index:hover, .back-to-index:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(47,111,237,0.4);
+}
+.back-to-index-bottom {
+  margin: 32px auto 40px;
+}
+
+.post-nav {
+  max-width: 640px;
+  margin: 8px auto 0;
+  padding: 20px;
+  background: #fff;
+  border: 2px solid var(--pink-ln);
+  border-radius: 16px;
+  text-align: center;
+}
+.post-nav-title {
+  margin: 0 0 12px;
+  font-weight: bold;
+  color: var(--pink);
+  font-size: 0.95rem;
+}
+.post-nav-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+.post-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 18px;
+  border-radius: 999px;
+  font-weight: bold;
+  font-size: 0.85rem;
+  text-decoration: none;
+  color: var(--ink);
+  background: #fff;
+  border: 2px solid var(--blue-ln);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.post-nav-btn:hover, .post-nav-btn:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(31,35,55,0.1);
+}
+.post-nav-btn-primary {
+  color: #fff;
+  background: var(--blue);
+  border-color: var(--blue);
+  box-shadow: 0 4px 14px rgba(47,111,237,0.3);
+}
+.post-nav-btn-note {
+  color: #000;
+  background: #ff8a00;
+  border-color: #ff8a00;
+}
+header.hero {
+  padding-top: 16px;
+  text-align: center;
+}
+header.hero h1 {
+  font-size: 1.7rem;
+  margin: 0 0 12px;
+}
+.tagline { color: var(--ink-soft); font-size: 0.9rem; margin: 0 0 8px; }
+.ep-badge {
+  display: inline-block;
+  background: var(--ink);
+  color: #fff;
+  padding: 6px 18px;
+  border-radius: 999px;
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+section.scene {
+  background: rgba(255,255,255,0.6);
+  border-radius: 18px;
+  padding: 28px 24px;
+  margin: 28px 0;
+}
+section.scene h2 {
+  font-size: 1.15rem;
+  margin: 0 0 20px;
+  padding-left: 14px;
+  border-left: 6px solid var(--pink);
+}
+h3 { font-size: 1rem; margin: 20px 0 10px; }
+
+.character-card {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  background: #fff;
+  border-radius: 14px;
+  padding: 14px;
+  margin: 14px 0;
+  border: 2px solid var(--pink-ln);
+}
+.character-card.takuya { border-color: var(--blue-ln); }
+.character-card img {
+  width: 216px; height: 216px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top center;
+  flex: none;
+}
+.character-name { margin: 0 0 4px; font-weight: bold; }
+.character-name span { font-weight: normal; color: var(--ink-soft); font-size: 0.85rem; margin-left: 4px; }
+.character-desc { margin: 0; font-size: 0.9rem; color: var(--ink-soft); }
+
+.location-illustration {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 16px;
+  margin: 18px 0 6px;
+  box-shadow: 0 6px 20px rgba(31,35,55,0.12);
+}
+
+.quiz-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 16px rgba(31,35,55,0.08);
+}
+.quiz-kicker { color: var(--pink); font-weight: bold; font-size: 0.8rem; margin: 0 0 8px; }
+.quiz-card.recap {
+  border: 3px solid #e0203c;
+}
+.quiz-card.recap .quiz-kicker { font-size: 1.15rem; }
+.quiz-question { font-weight: bold; margin: 0 0 16px; }
+.quiz-choices { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.quiz-choices li {
+  display: flex; gap: 10px; align-items: baseline;
+  background: #f7f8fb; border-radius: 10px; padding: 10px 14px;
+}
+.choice-label {
+  font-weight: bold; color: var(--pink); flex: none;
+}
+
+blockquote.callout {
+  background: var(--marker);
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin: 16px 0;
+  font-weight: bold;
+}
+blockquote.callout p { margin: 0; }
+
+.bubble-row { display: flex; gap: 10px; margin: 14px 0; align-items: center; }
+.bubble-row.takuya { flex-direction: row-reverse; }
+.bubble-row .avatar {
+  width: 192px; height: 192px; border-radius: 50%; object-fit: cover; object-position: center center; flex: none;
+  border: 3px solid rgba(255,255,255,0.9); box-shadow: 0 2px 6px rgba(31,35,55,0.12);
+}
+.bubble {
+  background: var(--pink-bg);
+  border: 2px solid var(--pink-ln);
+  border-radius: 16px;
+  padding: 10px 16px;
+  max-width: calc(100% - 220px);
+}
+.bubble.takuya { background: var(--blue-bg); border-color: var(--blue-ln); }
+.bubble.thought { border-style: dashed; opacity: 0.9; }
+.bubble p { margin: 0; }
+.bubble .speaker-name { font-size: 0.75rem; font-weight: bold; color: var(--ink-soft); margin: 0 0 2px; }
+.thought-tag {
+  font-weight: normal; font-size: 0.7rem; margin-left: 6px;
+  border: 1px solid var(--ink-soft); border-radius: 999px; padding: 0 6px;
+}
+
+.narration {
+  text-align: center;
+  color: var(--ink-soft);
+  font-style: italic;
+  font-size: 0.9rem;
+  margin: 18px 0;
+}
+
+.plain-list, .recap-list { padding-left: 1.4em; }
+.plain-list li, .recap-list li { margin: 6px 0; }
+
+.table-wrap { overflow-x: auto; margin: 16px 0; }
+table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+th, td { border: 1px solid #dfe3ee; padding: 8px 10px; text-align: left; }
+th { background: #f2f4fa; }
+tr.correct-row { background: var(--pink-bg); }
+
+.answer-callout {
+  background: var(--ink);
+  color: #fff;
+  border-radius: 14px;
+  padding: 16px 20px;
+  font-weight: bold;
+  font-size: 1.05rem;
+}
+.answer-kicker {
+  display: inline-block;
+  background: var(--marker);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 2px 12px;
+  font-size: 0.8rem;
+  margin-right: 10px;
+}
+
+.footnote { color: var(--ink-soft); font-size: 0.8rem; text-align: center; }
+
+footer.site-footer {
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+  padding: 24px 20px 60px;
+}
+.contact-link {
+  color: var(--ink-soft);
+  text-decoration: underline;
+}
+@media (max-width: 480px) {
+  .bubble-row .avatar { width: 108px; height: 108px; }
+  .bubble { max-width: calc(100% - 130px); }
+  header.hero h1 { font-size: 1.35rem; }
+  .character-card { flex-direction: column; text-align: center; }
+  .character-card img { width: 160px; height: 160px; }
+}
+
+</style>
+<script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1e557915580844ab85372ac0e8263b4d"}'></script>
+</head>
+<body>
+<div class="post-nav">
+  <div class="post-nav-buttons">
+    <a class="post-nav-btn post-nav-btn-note" href="https://note.com/cute_camel1259/n/n6cf51a4b5465">noteで全108話を購入する</a>
+    <a class="post-nav-btn" href="index.html">無料の一覧に行く</a>
+    <a class="post-nav-btn post-nav-btn-primary" href="https://buy.stripe.com/5kQ9AM7eobaF9pf0UL33W02">全108話を購入する（300円）</a>
+  </div>
+</div>
+<header class="hero">
+<h1>【第6話】メール設定、謎すぎる｜ITパスポート 令和3年度 問84</h1>
+<p class="tagline">～ツンデレ女子大生と東大パソコンオタクの、ちょっと不器用な勉強会～</p>
+<p class="ep-badge">第6話｜第1部　場所：カフェ</p>
+</header>
+<main>
+<section class="scene"><h2>登場人物</h2>
+<div class="character-card misaki">
+  <img src="images/characters/misaki/女性普段着/女性指差し.png" alt="美咲">
+  <div>
+    <p class="character-name">美咲<span>（みさき）</span></p>
+    <p class="character-desc">女子大生。就活のエントリーシートの資格欄が真っ白なことに気づき、慌ててITパスポートの勉強を開始。ITは完全に素人。高校時代は可愛くて人気者だったので、ちょっとプライドが高い。素直じゃない。</p>
+  </div>
+</div>
+<div class="character-card takuya">
+  <img src="images/characters/takuya/男性斜め左向き.png" alt="拓也">
+  <div>
+    <p class="character-name">拓也<span>（たくや）</span></p>
+    <p class="character-desc">美咲の高校時代の同級生。東京大学工学部。子どもの頃からパソコンばかりいじってきた生粋のオタク。実は美咲のことが好きだが、10年近く言い出せていない。教えるのは得意だが、口が悪いのが玉に瑕。</p>
+  </div>
+</div>
+<img class="location-illustration" src="images/illustrations/カフェ.png" alt="カフェ">
+</section>
+<section class="scene"><h2>今日の問題</h2>
+<div class="quiz-card">
+  <p class="quiz-kicker">今日の問題</p>
+  <p class="quiz-question">PCにメールソフトを新規にインストールした。その際に設定が必要となるプロトコルに該当するものはどれか。</p>
+  <ul class="quiz-choices">
+<li><span class="choice-label">ア</span><span>DNS</span></li>
+<li><span class="choice-label">イ</span><span>FTP</span></li>
+<li><span class="choice-label">ウ</span><span>MIME</span></li>
+<li><span class="choice-label">エ</span><span>POP3</span></li>
+  </ul>
+</div>
+</section>
+<section class="scene"><h2>第1幕：新しいパソコン、届いたけど</h2>
+<p class="narration">カフェの窓際の席。美咲の前には、まだ保護フィルムも剥がしきれていない新品のノートPCが開かれている。</p>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>お、それ新しいパソコン？</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>そう。就活で自分のPCが欲しくなって、バイト代はたいて買ったの。……で、さっきからずっとメールソフトの設定でつまずいてる</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>あー、あるある。最初のメール設定って地味に鬼門なんだよね</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性2.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>『受信サーバー』とか『ポート番号』とか、知らない単語ばっかり出てきて、もう心が折れそう</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>ちょうどいいや、それ今日の問題とまるかぶりだから、一緒にやっちゃおう</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性3.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>え、ほんとに？　こんな実用的な問題も出るの</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>出るよ。ITパスポートは資格とか法律だけじゃなくて、こういう地味な設定周りの知識もちゃんと聞いてくる</p>
+  </div>
+</div>
+</section>
+<section class="scene"><h2>第2幕：とりあえずDNSって言っとけば正解っぽい説</h2>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性4.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>じゃあ答えるわね。これ、<strong>ア　DNS</strong>でしょ</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>お、なんでDNS？</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>だって、なんかネットの住所を調べるやつでしょ？　メールソフトも『どこのサーバーに繋ぐか』を知らなきゃいけないわけだから、住所を調べるDNSが必要、で合ってると思ったんだけど</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>発想の筋道は悪くないんだけど、それ、<strong>住所録</strong>の話であって、<strong>取りに行く手順</strong>の話とは違うんだよね</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性2.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>住所録？</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>DNSは、たとえば『mail.example.com』みたいな名前を、コンピュータが実際に使う数字の住所（IPアドレス）に変換する仕組み。たしかにメールを送るときにも裏側で使われてるんだけど、<strong>メールソフトの設定画面でユーザーが直接いじる項目じゃない</strong>んだ</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性3.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>え、裏側で勝手にやってくれてるの？</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>そう。<strong>普段は意識しなくていいくらい"裏方"に徹してる</strong>。むしろ、そこを表に出して手動で毎回設定しなきゃいけないとしたら、それはそれで不便でしょ</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性4.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>たしかに、住所帳を自分で全部手入力するようなものだもんね……くっ</p>
+  </div>
+</div>
+</section>
+<section class="scene"><h2>第3幕：私書箱に取りに行く配達係</h2>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性自信顔.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>正解は<strong>エ　POP3</strong>。これがメールソフトの設定で必ず聞かれる、代表的な受信用プロトコル</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>ぴーおーぴー……なんか語呂が悪いわね</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>たとえ話するね。メールサーバーって、<strong>郵便局の私書箱</strong>みたいなものだと思って</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性2.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>私書箱……あ、鍵付きの、あの箱？</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>そう。世界中から届いたメールは、いったんその私書箱に溜まっていく。<strong>POP3は、その私書箱まで取りに行って、中身を全部持ち帰ってくる配達員</strong>みたいな役割なんだ</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性3.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>持ち帰る……。じゃあ、私書箱には何も残らないの？</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>基本的にはそう。<strong>PCに持ち帰った時点で、サーバー側からは削除される</strong>のが標準的な動き。だから同じメールを別のスマホでも見ようとすると、『あれ、届いてない』ってなることがある</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性4.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>あー！　前にスマホとパソコンで見えるメールが違って混乱したことある！　あれこういう仕組みだったのね</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性自信顔.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p><strong>そういうこと</strong>。ちなみに新しいメールソフトの設定画面で、『受信サーバー（POP3）』って項目を入力させられるのは、<strong>この私書箱の場所と鍵を、ソフトに教えてあげてる</strong>ってイメージ</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>なるほど、鍵と住所を教えるから、私の代わりに取りに行ってきて、ってことね</p>
+  </div>
+</div>
+</section>
+<section class="scene"><h2>第4幕：拓也、答えを先に言っちゃう</h2>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>じゃあ次、送信のほうも軽く触れておくと、メールを送るときは<strong>SMTP</strong>っていう別のプロトコルを使うんだ。受信と送信で担当が分かれてて――</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性2.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>ちょっと待って、それって、私書箱に手紙を出しに行くほうの……</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>そう、送るほうの窓口。SMTPは郵便局の窓口みたいなもので――</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性3.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>わかった、じゃあ受け取るのがPOP3で、出すのが――</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>SMTP。だから設定画面には『受信サーバー（POP3）』と『送信サーバー（SMTP）』の<strong>両方</strong>が出てくるんだよ</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性4.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>……ちょっと、私が今言おうとしてたのに</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>あ</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>『出すのが何でしょう』まで自分で言わせてよ。毎回、こっちが答えにたどり着く直前で先回りしてくるの、地味にイラッとするんだけど</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性謝る.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>ごめん……つい、テンポよく話したくて</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性2.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>テンポより、こっちが<strong>考える時間</strong>のほうが大事なの。わかった？</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>肝に銘じます。……ちゃんと最後まで待つね</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性ツンとしている.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>……ふん、わかればいいのよ</p>
+  </div>
+</div>
+</section>
+<section class="scene"><h2>第5幕：残りの選択肢を片付ける</h2>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>気を取り直して、残りの<strong>イ</strong>と<strong>ウ</strong>ね</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性3.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>イは『FTP』……これも聞いたことある気がするけど</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>FTPは<strong>ファイル転送</strong>専用のプロトコル。ホームページ用のファイルをサーバーにアップロードしたりするときに使うもので、メールとは畑違い</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性4.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>文字だけ見るとどれも似てるのに、中身は全然違うのね</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>じゃあ<strong>ウ</strong>の『MIME』は？</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>これ初めて聞く単語なんだけど</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>MIMEは、メール本文に<strong>画像や添付ファイルなどのテキスト以外のデータを載せるための"書き方のルール"</strong>。プロトコルというより、<strong>メールの中身のフォーマット規格</strong>に近い</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性2.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>じゃあ、写真を添付できるのはMIMEのおかげ、ってこと？</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>まさにそう。でも、あくまで<strong>"中身の書き方"のルール</strong>であって、『サーバーに接続するための設定』ではないから、今回の答えにはならない</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性3.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>……なんか、全部『メールに関係あるっぽい言葉』を集めて、その中から本当に設定で使うやつだけ選ばせる問題だったのね</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性自信顔.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p><strong>完璧な理解</strong>。ITパスポートの用語問題、けっこうこのパターン多いよ</p>
+  </div>
+</div>
+<div class="quiz-card recap">
+  <p class="quiz-kicker">問題文（再掲）</p>
+  <p class="quiz-question">PCにメールソフトを新規にインストールした。その際に設定が必要となるプロトコルに該当するものはどれか。</p>
+  <ul class="quiz-choices">
+<li><span class="choice-label">ア</span><span>DNS</span></li>
+<li><span class="choice-label">イ</span><span>FTP</span></li>
+<li><span class="choice-label">ウ</span><span>MIME</span></li>
+<li><span class="choice-label">エ</span><span>POP3</span></li>
+  </ul>
+</div>
+</section>
+<section class="scene"><h2>まとめ：選択肢ごとの答え合わせ</h2>
+<div class="table-wrap"><table><thead><tr><th>選択肢</th><th>用語</th><th>役割</th><th>メール設定で使うか</th></tr></thead><tbody><tr class=""><td>ア</td><td>DNS</td><td>名前をIPアドレスに変換する（裏方の仕組み）</td><td>通常は直接設定しない</td></tr>
+<tr class=""><td>イ</td><td>FTP</td><td>ファイル転送用のプロトコル</td><td>使わない（メールと無関係）</td></tr>
+<tr class=""><td>ウ</td><td>MIME</td><td>メール本文に添付ファイル等を載せる書式規格</td><td>中身の形式であり接続設定ではない</td></tr>
+<tr class="correct-row"><td><strong>エ</strong></td><td><strong>POP3</strong></td><td><strong>サーバーからメールを受信するプロトコル</strong></td><td><strong>設定が必要</strong></td></tr></tbody></table></div>
+<p class="answer-callout"><span class="answer-kicker">答え</span>エ　POP3</p>
+</section>
+<section class="scene"><h2>覚え方のコツ</h2>
+<blockquote class="callout"><p><strong>私書箱に、取りに行く配達係。</strong></p></blockquote>
+<ul class="plain-list"><li><strong>POP3＝受信担当</strong>。サーバーの私書箱からメールを持ち帰る</li><li>送信担当は<strong>SMTP</strong>（今回の選択肢にはないが、セットで覚える）</li><li>DNSは裏方、FTPはファイル転送、MIMEは中身の書式。<strong>どれも「設定で使う接続用プロトコル」ではない</strong></li></ul>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>新しいメールソフトを設定するとき、『受信サーバー』と『送信サーバー』の欄が両方出てくるのは、<strong>受け取る係と、出す係が別プロトコルだから</strong>。この2つがセットだって知ってるだけで、設定画面が一気に読み解きやすくなるよ</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性4.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>私書箱の鍵と、窓口の場所を、両方教えてあげる感じね</p>
+  </div>
+</div>
+<h3>おまけ：POP3とIMAPの違い</h3>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>ちなみに最近は、POP3の代わりに<strong>IMAP</strong>を使うメールソフトも多いよ</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>イマップ？　また新しい単語……</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>POP3が『私書箱から<strong>持ち帰って</strong>、私書箱を空にする』方式なのに対して、IMAPは<strong>私書箱に置いたまま、その場で読む</strong>方式。だから複数の端末で同じメールを見ても、<strong>どこからでも同じ状態</strong>で見られる</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性2.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>あ、それいいじゃない。じゃあ最初からそっちにすればよかったのに</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>一長一短でね。IMAPはサーバー側にずっとデータが残るから、サーバーの容量を圧迫しやすい。POP3は自分のPCに全部持ち帰る分、サーバーはすっきりする。用途によって使い分けるんだ</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性3.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>へえ……。なんか、荷物を全部家に持ち帰るタイプか、ロッカーに置きっぱなしにするタイプか、みたいな話ね</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>いい例えだね、それ</p>
+  </div>
+</div>
+</section>
+<section class="scene"><h2>エピローグ</h2>
+<p class="narration">新しいノートPCの設定画面に、ようやく緑色のチェックマークが並ぶ。</p>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性4.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>やった、設定できた……！</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>お疲れさま。地味だけど、これで一気にパソコン初心者卒業だね</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性ツンとしている.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>ふふん、まあね</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>よかった、諦めずに済んで</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>……ねえ、今日の話</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>うん？</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性2.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>消さずに、ちゃんと<strong>サーバーに残しておく設定</strong>にしとくわ</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性驚く.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>え、それただの記憶の話だよね？　POP3関係なくない？</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性怒っている.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>うるさいわね、比喩よ比喩。……つまり、忘れないってこと</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>……うん。俺も、忘れない</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性3.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>な、なによ急に真面目な顔して。ただの相槌じゃない</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>そう？　ならよかった</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性ツンとしている.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>……ふん。じゃ、次のコーヒー頼んでくるから、あんたも何か頼む？</p>
+  </div>
+</div>
+</section>
+<section class="scene"><h2>今日のポイントおさらい</h2>
+<ol class="recap-list"><li><strong>POP3＝メールを受信するためのプロトコル</strong>。新規メールソフト設定時に必ず設定が必要</li><li>送信は別プロトコルの<strong>SMTP</strong>が担当。受信と送信でプロトコルが分かれている</li><li>DNSは名前解決の裏方、FTPはファイル転送、MIMEはメール本文の書式規格。<strong>どれも接続設定そのものではない</strong></li><li>POP3は「持ち帰って空にする」、IMAPは「サーバーに置いたまま読む」という違いがある</li><li>用語が似ていても、<strong>「何のためのプロトコルか」を一つずつ切り分けて考える</strong>のがコツ</li></ol>
+<p class="narration">次回もお楽しみに。</p>
+<p class="footnote">この記事はITパスポート試験 令和3年度 問84（テクノロジ系／ネットワーク）の解説です。</p>
+</section>
+</main>
+<div class="post-nav">
+  <div class="post-nav-buttons">
+    <a class="post-nav-btn post-nav-btn-note" href="https://note.com/cute_camel1259/n/n6cf51a4b5465">noteで全108話を購入する</a>
+    <a class="post-nav-btn" href="index.html">無料の一覧に行く</a>
+    <a class="post-nav-btn post-nav-btn-primary" href="https://buy.stripe.com/5kQ9AM7eobaF9pf0UL33W02">全108話を購入する（300円）</a>
+  </div>
+</div>
+<footer class="site-footer">
+  <p>ITパスポート過去問 ラブコメ解説</p>
+  <p><a class="contact-link" href="mailto:puniee.work@gmail.com?subject=IT%E3%83%91%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E9%81%8E%E5%8E%BB%E5%95%8F%20%E3%83%A9%E3%83%96%E3%82%B3%E3%83%A1%E8%A7%A3%E8%AA%AC%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">お問い合わせ</a>　<a class="contact-link" href="tokushoho.html">特定商取引法に基づく表記</a>　<a class="contact-link" href="privacy.html">プライバシーポリシー</a></p>
+</footer>
+</body>
+</html>

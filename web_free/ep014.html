@@ -1,0 +1,832 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>【第14話】暗号化で防げる？｜ITパスポート ラブコメ解説</title>
+<meta name="description" content="暗号化で防げる？｜ツンデレ女子大生と東大パソコンオタクの、ちょっと不器用な勉強会。ITパスポート過去問（令和7年度 問92）を実際の過去問で解説。">
+<link rel="canonical" href="https://itp-lovecome1-free.puniee-work.com/ep014.html">
+<meta name="google-site-verification" content="0-v6CVaNU3h9D5Yw373vGnZ5f5Cju0XpfsWTc2XBGVM">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ITパスポート過去問 ラブコメ♥解説">
+<meta property="og:title" content="【第14話】暗号化で防げる？｜ITパスポート ラブコメ解説">
+<meta property="og:description" content="暗号化で防げる？｜ツンデレ女子大生と東大パソコンオタクの、ちょっと不器用な勉強会。ITパスポート過去問（令和7年度 問92）を実際の過去問で解説。">
+<meta property="og:url" content="https://itp-lovecome1-free.puniee-work.com/ep014.html">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://itp-lovecome1-free.puniee-work.com/images/ep014/thumb.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="【第14話】暗号化で防げる？｜ITパスポート ラブコメ解説">
+<meta name="twitter:description" content="暗号化で防げる？｜ツンデレ女子大生と東大パソコンオタクの、ちょっと不器用な勉強会。ITパスポート過去問（令和7年度 問92）を実際の過去問で解説。">
+<meta name="twitter:image" content="https://itp-lovecome1-free.puniee-work.com/images/ep014/thumb.png">
+<style>
+
+:root {
+  --ink: #1f2337;
+  --ink-soft: #5f6782;
+  --pink: #ff6b8a;
+  --pink-bg: #ffe7ed;
+  --pink-ln: #ffb0c3;
+  --blue: #2f6fed;
+  --blue-bg: #e2ecff;
+  --blue-ln: #a3c1ff;
+  --marker: #ffe066;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Hiragino Sans", "Noto Sans JP", system-ui, sans-serif;
+  color: var(--ink);
+  background: linear-gradient(135deg, #fff3f6 0%, #e9f0ff 100%);
+  line-height: 1.85;
+}
+main, header.hero, footer.site-footer {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.back-to-index {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 6px;
+  margin: 18px auto 0;
+  padding: 10px 22px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #fff;
+  background: var(--blue);
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(47,111,237,0.3);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.back-to-index:hover, .back-to-index:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(47,111,237,0.4);
+}
+.back-to-index-bottom {
+  margin: 32px auto 40px;
+}
+
+.post-nav {
+  max-width: 640px;
+  margin: 8px auto 0;
+  padding: 20px;
+  background: #fff;
+  border: 2px solid var(--pink-ln);
+  border-radius: 16px;
+  text-align: center;
+}
+.post-nav-title {
+  margin: 0 0 12px;
+  font-weight: bold;
+  color: var(--pink);
+  font-size: 0.95rem;
+}
+.post-nav-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+.post-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 18px;
+  border-radius: 999px;
+  font-weight: bold;
+  font-size: 0.85rem;
+  text-decoration: none;
+  color: var(--ink);
+  background: #fff;
+  border: 2px solid var(--blue-ln);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.post-nav-btn:hover, .post-nav-btn:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(31,35,55,0.1);
+}
+.post-nav-btn-primary {
+  color: #fff;
+  background: var(--blue);
+  border-color: var(--blue);
+  box-shadow: 0 4px 14px rgba(47,111,237,0.3);
+}
+.post-nav-btn-note {
+  color: #000;
+  background: #ff8a00;
+  border-color: #ff8a00;
+}
+header.hero {
+  padding-top: 16px;
+  text-align: center;
+}
+header.hero h1 {
+  font-size: 1.7rem;
+  margin: 0 0 12px;
+}
+.tagline { color: var(--ink-soft); font-size: 0.9rem; margin: 0 0 8px; }
+.ep-badge {
+  display: inline-block;
+  background: var(--ink);
+  color: #fff;
+  padding: 6px 18px;
+  border-radius: 999px;
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+section.scene {
+  background: rgba(255,255,255,0.6);
+  border-radius: 18px;
+  padding: 28px 24px;
+  margin: 28px 0;
+}
+section.scene h2 {
+  font-size: 1.15rem;
+  margin: 0 0 20px;
+  padding-left: 14px;
+  border-left: 6px solid var(--pink);
+}
+h3 { font-size: 1rem; margin: 20px 0 10px; }
+
+.character-card {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  background: #fff;
+  border-radius: 14px;
+  padding: 14px;
+  margin: 14px 0;
+  border: 2px solid var(--pink-ln);
+}
+.character-card.takuya { border-color: var(--blue-ln); }
+.character-card img {
+  width: 216px; height: 216px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top center;
+  flex: none;
+}
+.character-name { margin: 0 0 4px; font-weight: bold; }
+.character-name span { font-weight: normal; color: var(--ink-soft); font-size: 0.85rem; margin-left: 4px; }
+.character-desc { margin: 0; font-size: 0.9rem; color: var(--ink-soft); }
+
+.location-illustration {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 16px;
+  margin: 18px 0 6px;
+  box-shadow: 0 6px 20px rgba(31,35,55,0.12);
+}
+
+.quiz-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 16px rgba(31,35,55,0.08);
+}
+.quiz-kicker { color: var(--pink); font-weight: bold; font-size: 0.8rem; margin: 0 0 8px; }
+.quiz-card.recap {
+  border: 3px solid #e0203c;
+}
+.quiz-card.recap .quiz-kicker { font-size: 1.15rem; }
+.quiz-question { font-weight: bold; margin: 0 0 16px; }
+.quiz-choices { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.quiz-choices li {
+  display: flex; gap: 10px; align-items: baseline;
+  background: #f7f8fb; border-radius: 10px; padding: 10px 14px;
+}
+.choice-label {
+  font-weight: bold; color: var(--pink); flex: none;
+}
+
+blockquote.callout {
+  background: var(--marker);
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin: 16px 0;
+  font-weight: bold;
+}
+blockquote.callout p { margin: 0; }
+
+.bubble-row { display: flex; gap: 10px; margin: 14px 0; align-items: center; }
+.bubble-row.takuya { flex-direction: row-reverse; }
+.bubble-row .avatar {
+  width: 192px; height: 192px; border-radius: 50%; object-fit: cover; object-position: center center; flex: none;
+  border: 3px solid rgba(255,255,255,0.9); box-shadow: 0 2px 6px rgba(31,35,55,0.12);
+}
+.bubble {
+  background: var(--pink-bg);
+  border: 2px solid var(--pink-ln);
+  border-radius: 16px;
+  padding: 10px 16px;
+  max-width: calc(100% - 220px);
+}
+.bubble.takuya { background: var(--blue-bg); border-color: var(--blue-ln); }
+.bubble.thought { border-style: dashed; opacity: 0.9; }
+.bubble p { margin: 0; }
+.bubble .speaker-name { font-size: 0.75rem; font-weight: bold; color: var(--ink-soft); margin: 0 0 2px; }
+.thought-tag {
+  font-weight: normal; font-size: 0.7rem; margin-left: 6px;
+  border: 1px solid var(--ink-soft); border-radius: 999px; padding: 0 6px;
+}
+
+.narration {
+  text-align: center;
+  color: var(--ink-soft);
+  font-style: italic;
+  font-size: 0.9rem;
+  margin: 18px 0;
+}
+
+.plain-list, .recap-list { padding-left: 1.4em; }
+.plain-list li, .recap-list li { margin: 6px 0; }
+
+.table-wrap { overflow-x: auto; margin: 16px 0; }
+table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+th, td { border: 1px solid #dfe3ee; padding: 8px 10px; text-align: left; }
+th { background: #f2f4fa; }
+tr.correct-row { background: var(--pink-bg); }
+
+.answer-callout {
+  background: var(--ink);
+  color: #fff;
+  border-radius: 14px;
+  padding: 16px 20px;
+  font-weight: bold;
+  font-size: 1.05rem;
+}
+.answer-kicker {
+  display: inline-block;
+  background: var(--marker);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 2px 12px;
+  font-size: 0.8rem;
+  margin-right: 10px;
+}
+
+.footnote { color: var(--ink-soft); font-size: 0.8rem; text-align: center; }
+
+footer.site-footer {
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+  padding: 24px 20px 60px;
+}
+.contact-link {
+  color: var(--ink-soft);
+  text-decoration: underline;
+}
+@media (max-width: 480px) {
+  .bubble-row .avatar { width: 108px; height: 108px; }
+  .bubble { max-width: calc(100% - 130px); }
+  header.hero h1 { font-size: 1.35rem; }
+  .character-card { flex-direction: column; text-align: center; }
+  .character-card img { width: 160px; height: 160px; }
+}
+
+</style>
+<script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1e557915580844ab85372ac0e8263b4d"}'></script>
+</head>
+<body>
+<div class="post-nav">
+  <div class="post-nav-buttons">
+    <a class="post-nav-btn post-nav-btn-note" href="https://note.com/cute_camel1259/n/n6cf51a4b5465">noteで全108話を購入する</a>
+    <a class="post-nav-btn" href="index.html">無料の一覧に行く</a>
+    <a class="post-nav-btn post-nav-btn-primary" href="https://buy.stripe.com/5kQ9AM7eobaF9pf0UL33W02">全108話を購入する（300円）</a>
+  </div>
+</div>
+<header class="hero">
+<h1>【第14話】暗号化すれば防げる？｜ITパスポート 令和7年度 問92</h1>
+<p class="tagline">～ツンデレ女子大生と東大パソコンオタクの、ちょっと不器用な勉強会～</p>
+<p class="ep-badge">第14話｜第1部　場所：ネットカフェ</p>
+</header>
+<main>
+<section class="scene"><h2>登場人物</h2>
+<div class="character-card misaki">
+  <img src="images/characters/misaki/女性普段着/女性.png" alt="美咲">
+  <div>
+    <p class="character-name">美咲<span>（みさき）</span></p>
+    <p class="character-desc">女子大生。就活のエントリーシートの資格欄が真っ白なことに気づき、慌ててITパスポートの勉強を開始。ITは完全に素人。高校時代は可愛くて人気者だったので、ちょっとプライドが高い。素直じゃない。</p>
+  </div>
+</div>
+<div class="character-card takuya">
+  <img src="images/characters/takuya/男性斜め左向き.png" alt="拓也">
+  <div>
+    <p class="character-name">拓也<span>（たくや）</span></p>
+    <p class="character-desc">美咲の高校時代の同級生。東京大学工学部。子どもの頃からパソコンばかりいじってきた生粋のオタク。実は美咲のことが好きだが、10年近く言い出せていない。教えるのは得意だが、口が悪いのが玉に瑕。</p>
+  </div>
+</div>
+<img class="location-illustration" src="images/illustrations/ネットカフェ.png" alt="ネットカフェ">
+</section>
+<section class="scene"><h2>今日の問題</h2>
+<div class="quiz-card">
+  <p class="quiz-kicker">今日の問題</p>
+  <p class="quiz-question">従業員が使用する PC がランサムウェアに感染した場合の損害を軽減する対策例として、適切なものはどれか。</p>
+  <ul class="quiz-choices">
+<li><span class="choice-label">ア</span><span>PC が接続するファイルサーバの HDD のバックアップデータを定期的に取得し、ネットワークから切り離して保管する。</span></li>
+<li><span class="choice-label">イ</span><span>PC に多要素認証の仕組みを導入する。</span></li>
+<li><span class="choice-label">ウ</span><span>PC の HDD を暗号化する。</span></li>
+<li><span class="choice-label">エ</span><span>PC へのログイン時に、パスワードを複数回間違えたら、当該 ID をロックする。</span></li>
+  </ul>
+</div>
+</section>
+<section class="scene"><h2>第1幕：狭い個室で</h2>
+<p class="narration">ネットカフェの二人用フラットシート個室。レポート課題で家のプリンターが壊れたという美咲に付き合い、拓也が印刷代行がてら勉強会になった。狭い個室に、二人並んで座る形になる。</p>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>……なんか、この距離感、落ち着かないんだけど</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>個室、これしか空いてなかったからね。……あ、印刷待ってる間に、今日の問題やる？</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性2.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>うん。えっと、『ランサムウェア』……これ、知ってる。データ人質に取られて、お金要求されるやつでしょ</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>そうそう、まさにそれ。じゃあ、感染しちゃった後の<strong>被害を軽減する対策</strong>、どれだと思う？</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性3.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>感染した後、ね……</p>
+  </div>
+</div>
+</section>
+<section class="scene"><h2>第2幕：暗号化すれば防げるでしょ？</h2>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性4.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>じゃあ答えるわね。これ<strong>ウ</strong>でしょ。『HDDを暗号化する』</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>お、なんでそう思った？</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>だって、ランサムウェアって、データを勝手に暗号化して読めなくするウイルスなんでしょ？　だったら、先に自分でHDD暗号化しちゃえば、二重に暗号化されても意味なくない？　"もう暗号化されてるから、これ以上は無理"みたいな</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>発想はすごく面白いんだけど、実は<strong>HDDの暗号化とランサムウェアの暗号化は、守ってる対象がそもそも違う</strong>んだ</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性2.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>え、違うの？</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>うん。ちょっと整理しながら話すね</p>
+  </div>
+</div>
+</section>
+<section class="scene"><h2>第3幕：誘拐犯と同じ部屋に置いた合鍵</h2>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>まず、HDDの暗号化っていうのは、<strong>PCが盗まれたり紛失したりしたときに、中のデータを他人に読まれないようにする</strong>ための対策。<strong>正規のログイン状態（＝いつも通りパソコンを使ってるとき）なら、暗号化されてても普通にファイルは読み書きできる</strong>んだ</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性3.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>あ……じゃあ、私が普通にパソコン使ってる状態のままウイルスに感染したら？</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p><strong>そこがまさに落とし穴</strong>。ランサムウェアは、<strong>正規のユーザー権限のまま、勝手にファイルを開いて、勝手に別の暗号で上書きしていく</strong>んだ。HDD自体が暗号化されてるかどうかなんて、ランサムウェア側からしたら関係ない。ログインしてる時点で、普通にファイルをいじれちゃうから</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性4.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>……え、じゃあHDD暗号化、ランサムウェアには全然効かないってこと？</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>そう。HDD暗号化が守ってるのは<strong>"盗難・紛失"</strong>の脅威で、ランサムウェアが守るべきなのは<strong>"データを人質に取られること"</strong>。<strong>守ってる脅威がそもそも別物</strong>なんだ</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>なるほど……。じゃあ、正解の<strong>ア</strong>は何が違うの？</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>たとえ話するね。ランサムウェアって、<strong>誘拐犯みたいなもの</strong>だと思って。あなたの大事なデータを誘拐して、"返してほしければ身代金（Ransom）を払え"って脅してくる</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性2.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>うわ、たとえがえげつない</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>でしょ（笑）。ここで大事なのが、<strong>"合鍵"の置き場所</strong>。もし、誘拐犯が入り込める同じ部屋の中に、データの合鍵（＝バックアップ）を置いてたら、<strong>誘拐犯はその合鍵まで一緒に持っていっちゃう</strong></p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性3.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>あ、ネットワークで繋がってるバックアップだと、一緒に暗号化されちゃうかもってこと？</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性自信顔.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p><strong>まさにそれ</strong>。だから正解のアは、<strong>"バックアップを、誘拐犯の手が絶対に届かない場所（＝ネットワークから切り離した場所）に、あらかじめ保管しておく"</strong>っていう対策。誘拐犯にデータを人質に取られても、<strong>手の届かない場所に控えのコピーがあれば、そこから元に戻せる</strong></p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性4.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>……あー！　そういうことか！　"感染を防ぐ"んじゃなくて、"感染しても被害を最小限にする"ための備えだったのね</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性自信顔.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p><strong>完璧</strong>。問題文もよく読むと『損害を軽減する対策』って書いてあるでしょ。<strong>"防止"じゃなくて"軽減"</strong>がキーワードなんだ</p>
+  </div>
+</div>
+</section>
+<section class="scene"><h2>第4幕：拓也、昔のあだ名を蒸し返す</h2>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>にしても、美咲がそんな面白い発想でHDD暗号化を選ぶとは思わなかった。……あ、そういえば、高校の時もそうだったよね</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>え、なにが</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>漢字テストで『誘拐』の字が書けなくて、『幽戒』って書いてたやつ。あれ、けっこう伝説だったよね</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性2.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>……ちょっと、なんでその話、今引っ張り出してくるのよ</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>いや、今の話の流れで、なんとなく思い出しちゃって</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性3.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>あれ、私の中で完全に黒歴史に分類されてるやつなんだけど。10年近く経ってるのに、いつまで覚えてるのよ</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性謝る.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>ごめん……。無意識に懐かしくなって</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性4.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>あんた、たまに昔の失敗とか、こっちが忘れたい話を突然持ち出してくるわよね。気まずいからやめてほしいんだけど</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>たしかに、空気読まずに言っちゃったな……。以後、気をつける</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>ん、わかればいいのよ。……というか、なんであんたそんな昔のことまで覚えてるわけ</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>……さあ、なんでだろうね</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya thought">
+    <p class="speaker-name">拓也<span class="thought-tag">心の声</span></p>
+    <p>……美咲のことなら、大体なんでも覚えてるだけなんだけど</p>
+  </div>
+</div>
+</section>
+<section class="scene"><h2>第5幕：残りの選択肢を片付ける</h2>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>じゃあ、気を取り直して、残りの<strong>イ</strong>と<strong>エ</strong>ね</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性2.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>イは『多要素認証』……これ、パスワード以外にもなんか確認するやつよね</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>そう。パスワードに加えて、スマホの確認コードとか指紋認証とか、<strong>複数の要素で本人確認をする</strong>仕組み。これは<strong>"不正ログインを防ぐ"</strong>ための対策</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性3.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>あ、これも"防ぐ"側の話ってこと？</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>そう。<strong>すでに感染しちゃった後の被害軽減</strong>とは、そもそも目的の段階が違う。じゃあ<strong>エ</strong>の『ログイン失敗ロック』は？</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性4.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>これも、パスワード間違えたらロックする、みたいな話よね</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>これも<strong>不正ログインを防ぐ</strong>対策。総当たりでパスワードを試す攻撃を防ぐには有効だけど、<strong>ランサムウェアの被害を減らす話とは無関係</strong></p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>なるほど……。イとエは"侵入されないようにする"対策で、ウは"盗難対策"、アだけが"感染した後の備え"。<strong>全部、守ってる場面が違った</strong>のね</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p><strong>そのとおり</strong>。『対策』ってひとくくりにされがちだけど、<strong>"何を防ぐための対策か"を一つずつ切り分ける</strong>のが、この手の問題を解くコツだよ</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性2.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>今日、ようやく感覚つかめてきた気がするわ</p>
+  </div>
+</div>
+<div class="quiz-card recap">
+  <p class="quiz-kicker">問題文（再掲）</p>
+  <p class="quiz-question">従業員が使用する PC がランサムウェアに感染した場合の損害を軽減する対策例として、適切なものはどれか。</p>
+  <ul class="quiz-choices">
+<li><span class="choice-label">ア</span><span>PC が接続するファイルサーバの HDD のバックアップデータを定期的に取得し、ネットワークから切り離して保管する。</span></li>
+<li><span class="choice-label">イ</span><span>PC に多要素認証の仕組みを導入する。</span></li>
+<li><span class="choice-label">ウ</span><span>PC の HDD を暗号化する。</span></li>
+<li><span class="choice-label">エ</span><span>PC へのログイン時に、パスワードを複数回間違えたら、当該 ID をロックする。</span></li>
+  </ul>
+</div>
+</section>
+<section class="scene"><h2>まとめ：選択肢ごとの答え合わせ</h2>
+<div class="table-wrap"><table><thead><tr><th>選択肢</th><th>内容</th><th>守っている対象</th><th>正誤</th></tr></thead><tbody><tr class="correct-row"><td><strong>ア</strong></td><td><strong>バックアップをネットワークから切り離して保管</strong></td><td><strong>感染後のデータ復旧（損害軽減）</strong></td><td><strong>正解</strong></td></tr>
+<tr class="correct-row"><td>イ</td><td>多要素認証の導入</td><td>不正ログインの防止</td><td>不正解</td></tr>
+<tr class="correct-row"><td>ウ</td><td>HDDの暗号化</td><td>盗難・紛失時のデータ漏えい防止</td><td>不正解</td></tr>
+<tr class="correct-row"><td>エ</td><td>ログイン失敗時のIDロック</td><td>総当たり攻撃などの不正ログイン防止</td><td>不正解</td></tr></tbody></table></div>
+<p class="answer-callout"><span class="answer-kicker">答え</span>ア　PCが接続するファイルサーバのHDDのバックアップデータを定期的に取得し、ネットワークから切り離して保管する。</p>
+</section>
+<section class="scene"><h2>覚え方のコツ</h2>
+<blockquote class="callout"><p><strong>誘拐犯と同じ部屋に、合鍵を置かない。</strong></p></blockquote>
+<ul class="plain-list"><li>ランサムウェアは、<strong>すでにログインできている状態のまま</strong>ファイルを暗号化してしまう</li><li>HDD暗号化・多要素認証・ログインロックは、いずれも<strong>"侵入・盗難を防ぐ"側</strong>の対策</li><li>被害を"軽減"するには、<strong>ネットワークから切り離したバックアップ</strong>が必要</li></ul>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>セキュリティ対策の問題は、<strong>"何を防ぐ話なのか"を混同すると一気に間違える</strong>んだ。『不正アクセスを防ぐ』のか『盗難時の漏えいを防ぐ』のか『感染後の被害を減らす』のか、<strong>問題文のどの場面を聞いてるのか</strong>を先に確認する癖をつけるといいよ</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性3.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>同じ"対策"でも、守ってる敵が全然違うのね</p>
+  </div>
+</div>
+<h3>おまけ：バックアップを取るときの注意点</h3>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>バックアップって聞くと安心しがちだけど、<strong>普段からネットワークに繋ぎっぱなしのバックアップだと、ランサムウェアに一緒に暗号化されちゃう危険がある</strong>んだ。だから、<strong>定期的に取得したら、ネットワークから切り離して保管する</strong>っていう手順が大事</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性4.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>バックアップ取ってるから安心、じゃなくて、置き場所まで考えないとダメってことね</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性自信顔.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>そういうこと。あと、<strong>バックアップからちゃんと復元できるか、定期的にテストしておく</strong>のも実務では大事だったりする</p>
+  </div>
+</div>
+</section>
+<section class="scene"><h2>エピローグ</h2>
+<p class="narration">印刷が終わったレポートを受け取り、美咲がクリアファイルにしまう。</p>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>ありがと、助かったわ</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>どういたしまして</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性2.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>……ねえ、さっきの話だけど</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>うん？</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性3.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>もし私が、なんかに"人質"に取られるようなことがあっても……あんたが"手の届かない場所"に控えを置いといてくれたら、ちゃんと元に戻せるってことよね</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性驚く.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>え、急に何の話？</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性4.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>今日習った話の応用よ。……まあ、そういう場所に、私のこと覚えといてくれたら、悪くないなって、それだけ</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>……うん。ちゃんと、覚えとく。ネットワークから切り離した、一番安全なところに</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>な、なによ、真面目に返してくるの、調子狂うじゃない</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>いや、これはちゃんと言っておきたかったから</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性ツンとしている.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>……ふん、まあ、いいけど。じゃ、そろそろ出よっか</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>うん</p>
+  </div>
+</div>
+</section>
+<section class="scene"><h2>今日のポイントおさらい</h2>
+<ol class="recap-list"><li><strong>ランサムウェア対策の「損害軽減」＝オフラインバックアップからの復旧</strong></li><li>HDD暗号化は<strong>盗難・紛失時の漏えい防止</strong>が目的で、感染後の被害軽減とは別の話</li><li>多要素認証・ログイン失敗ロックは、どちらも<strong>不正ログインを防ぐ</strong>ための対策</li><li>ネットワークに繋ぎっぱなしのバックアップは、<strong>ランサムウェアと一緒に暗号化される危険</strong>がある</li><li>セキュリティ問題は、<strong>「その対策が何を防ぐためのものか」</strong>を一つずつ切り分けて考える</li></ol>
+<p class="narration">次回もお楽しみに。</p>
+<p class="footnote">この記事はITパスポート試験 令和7年度 問92（テクノロジ系／セキュリティ）の解説です。</p>
+</section>
+</main>
+<div class="post-nav">
+  <div class="post-nav-buttons">
+    <a class="post-nav-btn post-nav-btn-note" href="https://note.com/cute_camel1259/n/n6cf51a4b5465">noteで全108話を購入する</a>
+    <a class="post-nav-btn" href="index.html">無料の一覧に行く</a>
+    <a class="post-nav-btn post-nav-btn-primary" href="https://buy.stripe.com/5kQ9AM7eobaF9pf0UL33W02">全108話を購入する（300円）</a>
+  </div>
+</div>
+<footer class="site-footer">
+  <p>ITパスポート過去問 ラブコメ解説</p>
+  <p><a class="contact-link" href="mailto:puniee.work@gmail.com?subject=IT%E3%83%91%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E9%81%8E%E5%8E%BB%E5%95%8F%20%E3%83%A9%E3%83%96%E3%82%B3%E3%83%A1%E8%A7%A3%E8%AA%AC%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">お問い合わせ</a>　<a class="contact-link" href="tokushoho.html">特定商取引法に基づく表記</a>　<a class="contact-link" href="privacy.html">プライバシーポリシー</a></p>
+</footer>
+</body>
+</html>

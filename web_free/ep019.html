@@ -1,0 +1,811 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>【第19話】自動化の正体は「マクロ」｜ITパスポート ラブコメ解説</title>
+<meta name="description" content="自動化の正体は「マクロ」｜ツンデレ女子大生と東大パソコンオタクの、ちょっと不器用な勉強会。ITパスポート過去問（令和6年度 問58）を実際の過去問で解説。">
+<link rel="canonical" href="https://itp-lovecome1-free.puniee-work.com/ep019.html">
+<meta name="google-site-verification" content="0-v6CVaNU3h9D5Yw373vGnZ5f5Cju0XpfsWTc2XBGVM">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="ITパスポート過去問 ラブコメ♥解説">
+<meta property="og:title" content="【第19話】自動化の正体は「マクロ」｜ITパスポート ラブコメ解説">
+<meta property="og:description" content="自動化の正体は「マクロ」｜ツンデレ女子大生と東大パソコンオタクの、ちょっと不器用な勉強会。ITパスポート過去問（令和6年度 問58）を実際の過去問で解説。">
+<meta property="og:url" content="https://itp-lovecome1-free.puniee-work.com/ep019.html">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:image" content="https://itp-lovecome1-free.puniee-work.com/images/ep019/thumb.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="【第19話】自動化の正体は「マクロ」｜ITパスポート ラブコメ解説">
+<meta name="twitter:description" content="自動化の正体は「マクロ」｜ツンデレ女子大生と東大パソコンオタクの、ちょっと不器用な勉強会。ITパスポート過去問（令和6年度 問58）を実際の過去問で解説。">
+<meta name="twitter:image" content="https://itp-lovecome1-free.puniee-work.com/images/ep019/thumb.png">
+<style>
+
+:root {
+  --ink: #1f2337;
+  --ink-soft: #5f6782;
+  --pink: #ff6b8a;
+  --pink-bg: #ffe7ed;
+  --pink-ln: #ffb0c3;
+  --blue: #2f6fed;
+  --blue-bg: #e2ecff;
+  --blue-ln: #a3c1ff;
+  --marker: #ffe066;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Hiragino Sans", "Noto Sans JP", system-ui, sans-serif;
+  color: var(--ink);
+  background: linear-gradient(135deg, #fff3f6 0%, #e9f0ff 100%);
+  line-height: 1.85;
+}
+main, header.hero, footer.site-footer {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.back-to-index {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 6px;
+  margin: 18px auto 0;
+  padding: 10px 22px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #fff;
+  background: var(--blue);
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(47,111,237,0.3);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.back-to-index:hover, .back-to-index:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(47,111,237,0.4);
+}
+.back-to-index-bottom {
+  margin: 32px auto 40px;
+}
+
+.post-nav {
+  max-width: 640px;
+  margin: 8px auto 0;
+  padding: 20px;
+  background: #fff;
+  border: 2px solid var(--pink-ln);
+  border-radius: 16px;
+  text-align: center;
+}
+.post-nav-title {
+  margin: 0 0 12px;
+  font-weight: bold;
+  color: var(--pink);
+  font-size: 0.95rem;
+}
+.post-nav-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+.post-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 18px;
+  border-radius: 999px;
+  font-weight: bold;
+  font-size: 0.85rem;
+  text-decoration: none;
+  color: var(--ink);
+  background: #fff;
+  border: 2px solid var(--blue-ln);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.post-nav-btn:hover, .post-nav-btn:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(31,35,55,0.1);
+}
+.post-nav-btn-primary {
+  color: #fff;
+  background: var(--blue);
+  border-color: var(--blue);
+  box-shadow: 0 4px 14px rgba(47,111,237,0.3);
+}
+.post-nav-btn-note {
+  color: #000;
+  background: #ff8a00;
+  border-color: #ff8a00;
+}
+header.hero {
+  padding-top: 16px;
+  text-align: center;
+}
+header.hero h1 {
+  font-size: 1.7rem;
+  margin: 0 0 12px;
+}
+.tagline { color: var(--ink-soft); font-size: 0.9rem; margin: 0 0 8px; }
+.ep-badge {
+  display: inline-block;
+  background: var(--ink);
+  color: #fff;
+  padding: 6px 18px;
+  border-radius: 999px;
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+section.scene {
+  background: rgba(255,255,255,0.6);
+  border-radius: 18px;
+  padding: 28px 24px;
+  margin: 28px 0;
+}
+section.scene h2 {
+  font-size: 1.15rem;
+  margin: 0 0 20px;
+  padding-left: 14px;
+  border-left: 6px solid var(--pink);
+}
+h3 { font-size: 1rem; margin: 20px 0 10px; }
+
+.character-card {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  background: #fff;
+  border-radius: 14px;
+  padding: 14px;
+  margin: 14px 0;
+  border: 2px solid var(--pink-ln);
+}
+.character-card.takuya { border-color: var(--blue-ln); }
+.character-card img {
+  width: 216px; height: 216px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top center;
+  flex: none;
+}
+.character-name { margin: 0 0 4px; font-weight: bold; }
+.character-name span { font-weight: normal; color: var(--ink-soft); font-size: 0.85rem; margin-left: 4px; }
+.character-desc { margin: 0; font-size: 0.9rem; color: var(--ink-soft); }
+
+.location-illustration {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 16px;
+  margin: 18px 0 6px;
+  box-shadow: 0 6px 20px rgba(31,35,55,0.12);
+}
+
+.quiz-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 16px rgba(31,35,55,0.08);
+}
+.quiz-kicker { color: var(--pink); font-weight: bold; font-size: 0.8rem; margin: 0 0 8px; }
+.quiz-card.recap {
+  border: 3px solid #e0203c;
+}
+.quiz-card.recap .quiz-kicker { font-size: 1.15rem; }
+.quiz-question { font-weight: bold; margin: 0 0 16px; }
+.quiz-choices { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.quiz-choices li {
+  display: flex; gap: 10px; align-items: baseline;
+  background: #f7f8fb; border-radius: 10px; padding: 10px 14px;
+}
+.choice-label {
+  font-weight: bold; color: var(--pink); flex: none;
+}
+
+blockquote.callout {
+  background: var(--marker);
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin: 16px 0;
+  font-weight: bold;
+}
+blockquote.callout p { margin: 0; }
+
+.bubble-row { display: flex; gap: 10px; margin: 14px 0; align-items: center; }
+.bubble-row.takuya { flex-direction: row-reverse; }
+.bubble-row .avatar {
+  width: 192px; height: 192px; border-radius: 50%; object-fit: cover; object-position: center center; flex: none;
+  border: 3px solid rgba(255,255,255,0.9); box-shadow: 0 2px 6px rgba(31,35,55,0.12);
+}
+.bubble {
+  background: var(--pink-bg);
+  border: 2px solid var(--pink-ln);
+  border-radius: 16px;
+  padding: 10px 16px;
+  max-width: calc(100% - 220px);
+}
+.bubble.takuya { background: var(--blue-bg); border-color: var(--blue-ln); }
+.bubble.thought { border-style: dashed; opacity: 0.9; }
+.bubble p { margin: 0; }
+.bubble .speaker-name { font-size: 0.75rem; font-weight: bold; color: var(--ink-soft); margin: 0 0 2px; }
+.thought-tag {
+  font-weight: normal; font-size: 0.7rem; margin-left: 6px;
+  border: 1px solid var(--ink-soft); border-radius: 999px; padding: 0 6px;
+}
+
+.narration {
+  text-align: center;
+  color: var(--ink-soft);
+  font-style: italic;
+  font-size: 0.9rem;
+  margin: 18px 0;
+}
+
+.plain-list, .recap-list { padding-left: 1.4em; }
+.plain-list li, .recap-list li { margin: 6px 0; }
+
+.table-wrap { overflow-x: auto; margin: 16px 0; }
+table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+th, td { border: 1px solid #dfe3ee; padding: 8px 10px; text-align: left; }
+th { background: #f2f4fa; }
+tr.correct-row { background: var(--pink-bg); }
+
+.answer-callout {
+  background: var(--ink);
+  color: #fff;
+  border-radius: 14px;
+  padding: 16px 20px;
+  font-weight: bold;
+  font-size: 1.05rem;
+}
+.answer-kicker {
+  display: inline-block;
+  background: var(--marker);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 2px 12px;
+  font-size: 0.8rem;
+  margin-right: 10px;
+}
+
+.footnote { color: var(--ink-soft); font-size: 0.8rem; text-align: center; }
+
+footer.site-footer {
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+  padding: 24px 20px 60px;
+}
+.contact-link {
+  color: var(--ink-soft);
+  text-decoration: underline;
+}
+@media (max-width: 480px) {
+  .bubble-row .avatar { width: 108px; height: 108px; }
+  .bubble { max-width: calc(100% - 130px); }
+  header.hero h1 { font-size: 1.35rem; }
+  .character-card { flex-direction: column; text-align: center; }
+  .character-card img { width: 160px; height: 160px; }
+}
+
+</style>
+<script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1e557915580844ab85372ac0e8263b4d"}'></script>
+</head>
+<body>
+<div class="post-nav">
+  <div class="post-nav-buttons">
+    <a class="post-nav-btn post-nav-btn-note" href="https://note.com/cute_camel1259/n/n6cf51a4b5465">noteで全108話を購入する</a>
+    <a class="post-nav-btn" href="index.html">無料の一覧に行く</a>
+    <a class="post-nav-btn post-nav-btn-primary" href="https://buy.stripe.com/5kQ9AM7eobaF9pf0UL33W02">全108話を購入する（300円）</a>
+  </div>
+</div>
+<header class="hero">
+<h1>【第19話】それも自動でしょ？｜ITパスポート 令和6年度 問58</h1>
+<p class="tagline">～ツンデレ女子大生と東大パソコンオタクの、ちょっと不器用な勉強会～</p>
+<p class="ep-badge">第19話｜第1部　場所：家電量販店</p>
+</header>
+<main>
+<section class="scene"><h2>登場人物</h2>
+<div class="character-card misaki">
+  <img src="images/characters/misaki/女性普段着/女性指差し.png" alt="美咲">
+  <div>
+    <p class="character-name">美咲<span>（みさき）</span></p>
+    <p class="character-desc">女子大生。就活のエントリーシートの資格欄が真っ白なことに気づき、慌ててITパスポートの勉強を開始。ITは完全に素人。高校時代は可愛くて人気者だったので、ちょっとプライドが高い。素直じゃない。</p>
+  </div>
+</div>
+<div class="character-card takuya">
+  <img src="images/characters/takuya/男性斜め左向き.png" alt="拓也">
+  <div>
+    <p class="character-name">拓也<span>（たくや）</span></p>
+    <p class="character-desc">美咲の高校時代の同級生。東京大学工学部。子どもの頃からパソコンばかりいじってきた生粋のオタク。実は美咲のことが好きだが、10年近く言い出せていない。教えるのは得意だが、口が悪いのが玉に瑕。</p>
+  </div>
+</div>
+<img class="location-illustration" src="images/illustrations/家電量販店.png" alt="家電量販店">
+</section>
+<section class="scene"><h2>今日の問題</h2>
+<div class="quiz-card">
+  <p class="quiz-kicker">今日の問題</p>
+  <p class="quiz-question">文書作成ソフトや表計算ソフトなどにおいて、一連の操作手順をあらかじめ定義しておき、実行する機能はどれか。</p>
+  <ul class="quiz-choices">
+<li><span class="choice-label">ア</span><span>オートコンプリート</span></li>
+<li><span class="choice-label">イ</span><span>ソースコード</span></li>
+<li><span class="choice-label">ウ</span><span>プラグアンドプレイ</span></li>
+<li><span class="choice-label">エ</span><span>マクロ</span></li>
+  </ul>
+</div>
+</section>
+<section class="scene"><h2>第1幕：洗濯機売り場で</h2>
+<p class="narration">家電量販店、洗濯機売り場。就活で一人暮らしを考え始めた美咲が、下見にきたところに拓也が付き合っている。展示品のパネルに「プラグアンドプレイ対応」の文字。</p>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>ねえ、これ見て。『一連の操作手順をあらかじめ定義しておき、実行する機能』だって。……あ、これ、さっき見た『プラグアンドプレイ』のことじゃない？</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>お、ちょうどいいや。それ、今日の問題そのままだ</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性2.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>え、ほんとに？　じゃあ、これで合ってるかしら</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>うーん、実はそれ、ちょっと違うんだ。一緒に見ていこうか</p>
+  </div>
+</div>
+</section>
+<section class="scene"><h2>第2幕：挿すだけで使えるのも、自動化でしょ？</h2>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性3.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>じゃあ答えるわね。これ<strong>ウ</strong>でしょ。『プラグアンドプレイ』</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>お、なんでそう思った？</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性4.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>だって、さっきの棚に『挿すだけで使える』みたいなこと書いてあったじゃない。それも"操作を自動でやってくれる"ってことだから、同じ話かなって</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>発想はわかるんだけど、実はプラグアンドプレイは<strong>"別の種類の自動化"</strong>なんだ</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>別の種類？</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>うん。プラグアンドプレイは、<strong>USBメモリとかプリンタを挿したときに、パソコンが自動で機器を認識して、設定してくれる仕組み</strong>。これは<strong>"ハードウェアを繋いだときの自動認識"</strong>の話であって、<strong>"一連の操作手順を自分で定義して、後から呼び出す"</strong>っていう、今回の問題とは別物なんだ</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性2.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>あ……"自動"って言葉は同じでも、"何を自動化してるか"が違うのね</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性自信顔.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>そういうこと。じゃあ、正解を見てみようか</p>
+  </div>
+</div>
+</section>
+<section class="scene"><h2>第3幕：洗濯機の"標準コース"ボタン</h2>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性自信顔.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>正解は<strong>エ　マクロ</strong>。この洗濯機で説明するね</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性3.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>洗濯機で？</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>うん。洗濯するとき、いちいち『水を入れる』『洗剤を入れる』『すすぐ』『脱水する』って、毎回別々に指示する？</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性4.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>しないわね。『標準コース』のボタン、一つ押すだけよ</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p><strong>まさにそれ</strong>。『標準コース』ボタンの中には、<strong>あらかじめ"水を入れる→洗剤投入→洗う→すすぐ→脱水する"という一連の手順が、順番どおりに登録されてる</strong>。ボタン一つ押すだけで、その手順が最初から最後まで自動で再生される</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>あ……それが、文書ソフトとか表計算ソフトで言う"マクロ"ってこと？</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p><strong>そのとおり</strong>。たとえばExcelで、『この列をコピーして、別のシートに貼り付けて、色をつけて、印刷する』っていう作業を毎回手作業でやってたら大変でしょ。<strong>その一連の操作を"あらかじめ記録"しておいて、ボタン一つ（またはショートカットキー一つ）で"再生"できるようにする</strong>のがマクロなんだ</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性2.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>……あー！　そういうことか！　"機器を自動で認識する"のがプラグアンドプレイで、"自分で決めた操作の手順を、ボタン一つで再現する"のがマクロなのね</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性自信顔.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p><strong>完璧</strong>。どっちも"自動でやってくれる"感覚は近いけど、<strong>"何を""どうやって"自動化してるか</strong>が全然違うんだ</p>
+  </div>
+</div>
+</section>
+<section class="scene"><h2>第4幕：拓也、話の途中で結論を急ぐ</h2>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性3.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>そういえば、さっき店員さんに聞いたんだけど、この洗濯機、実は――</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>あ、わかった。『予約洗濯』の機能がついてる、ってことでしょ？　最近の洗濯機、大体そういう時間指定できる機能あるもんね</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性4.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>……いや、違うんだけど</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>あ</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>まだ話の途中だったのに、勝手に結論決めつけないでよ。今言おうとしたのは、洗剤の自動投入機能の話</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性謝る.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>ご、ごめん。てっきりそっちの話かと思って、つい先に言っちゃった</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性2.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>あんた、たまに人の話を最後まで聞かずに、『つまりこういうことでしょ』って勝手にまとめようとするわよね。しかも、大体ちょっとズレてるし</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>たしかに……。最後まで聞くようにする</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性3.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>ん、それでいいのよ。せっかちなのは悪くないけど、聞く順番くらいは守りなさいよね</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>肝に銘じます。……で、洗剤の自動投入機能がどうしたの？</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性4.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>そうそう、それがね――</p>
+  </div>
+</div>
+</section>
+<section class="scene"><h2>第5幕：残りの選択肢を片付ける</h2>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>気を取り直して、残りの<strong>ア</strong>と<strong>イ</strong>も片付けておこうか</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>アは『オートコンプリート』……これ、検索とかで出てくるやつよね</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>そう。<strong>文字を入力してる途中に、候補を予測して自動的に補完してくれる</strong>機能。検索窓とか、メールアドレス入力とかでよく見るね</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性2.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>あ、それは"一連の操作"じゃなくて、"文字入力の補助"の話ね</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>そのとおり。じゃあ<strong>イ</strong>の『ソースコード』は？</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性3.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>これは……なんか、プログラムの中身、みたいなイメージだけど</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>うん、<strong>ソースコードは、プログラムの"設計図"にあたるテキストそのもの</strong>。これは"機能"じゃなくて、<strong>"もの"を指す言葉</strong>なんだ。今回の問題は"機能はどれか"って聞いてるから、そもそもカテゴリーが合わない</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性4.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>なるほど……。アは"入力補助"、イは"機能じゃなくてもの"、ウは"機器の自動認識"。全部、今回の"手順を定義して実行する"って話とは違うカテゴリーだったのね</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p><strong>そのとおり</strong>。似たような"自動でなんかやってくれる"系の言葉が並んでるけど、それぞれ全然違う場面で使う用語なんだ</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>今日は、洗濯機のおかげで、すごく腑に落ちたわ</p>
+  </div>
+</div>
+<div class="quiz-card recap">
+  <p class="quiz-kicker">問題文（再掲）</p>
+  <p class="quiz-question">文書作成ソフトや表計算ソフトなどにおいて、一連の操作手順をあらかじめ定義しておき、実行する機能はどれか。</p>
+  <ul class="quiz-choices">
+<li><span class="choice-label">ア</span><span>オートコンプリート</span></li>
+<li><span class="choice-label">イ</span><span>ソースコード</span></li>
+<li><span class="choice-label">ウ</span><span>プラグアンドプレイ</span></li>
+<li><span class="choice-label">エ</span><span>マクロ</span></li>
+  </ul>
+</div>
+</section>
+<section class="scene"><h2>まとめ：選択肢ごとの答え合わせ</h2>
+<div class="table-wrap"><table><thead><tr><th>選択肢</th><th>用語</th><th>内容</th><th>正誤</th></tr></thead><tbody><tr class="correct-row"><td>ア</td><td>オートコンプリート</td><td>入力中の文字列から候補を予測して自動補完する</td><td>不正解</td></tr>
+<tr class="correct-row"><td>イ</td><td>ソースコード</td><td>プログラムの設計図となるテキスト（機能ではなく"もの"）</td><td>不正解</td></tr>
+<tr class="correct-row"><td>ウ</td><td>プラグアンドプレイ</td><td>機器を接続すると自動で認識・設定する仕組み</td><td>不正解</td></tr>
+<tr class="correct-row"><td><strong>エ</strong></td><td><strong>マクロ</strong></td><td><strong>一連の操作手順をあらかじめ登録し、実行時に再生する機能</strong></td><td><strong>正解</strong></td></tr></tbody></table></div>
+<p class="answer-callout"><span class="answer-kicker">答え</span>エ　マクロ</p>
+</section>
+<section class="scene"><h2>覚え方のコツ</h2>
+<blockquote class="callout"><p><strong>「標準コース」ボタンの中身が、マクロ。</strong></p></blockquote>
+<ul class="plain-list"><li>マクロ＝<strong>一連の操作手順を記録しておき、ボタン一つで再生する</strong>機能</li><li>プラグアンドプレイは<strong>機器接続時の自動認識</strong>、オートコンプリートは<strong>文字入力の補助</strong>、それぞれ別の自動化</li><li>ソースコードは<strong>"機能"ではなく"もの"</strong>を指す言葉なので、そもそもカテゴリーが違う</li></ul>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>『自動でやってくれる』系の言葉が出てきたら、まず<strong>"何を自動化してるのか"</strong>を確認するといいよ。手順の再現ならマクロ、機器の認識ならプラグアンドプレイ、入力補助ならオートコンプリート</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性2.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>洗濯機のコースボタンを思い出せば、もう忘れないと思うわ</p>
+  </div>
+</div>
+<h3>おまけ：マクロの活用シーン</h3>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>実務だと、Excelで<strong>毎月同じ形式の集計表を作る作業</strong>とか、<strong>同じ書式に整えてから印刷する作業</strong>なんかを、マクロに登録しておくと一気に楽になるよ</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性3.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>あ、それ地味に便利そうね。バイト先の発注リストとかも、毎回同じ手順で整えてるし</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>まさにそういう繰り返し作業こそ、マクロの出番だね</p>
+  </div>
+</div>
+</section>
+<section class="scene"><h2>エピローグ</h2>
+<p class="narration">洗濯機売り場を後にして、二人でエスカレーターへ向かう。</p>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性4.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>ねえ、なんか今気づいたんだけど</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>うん？</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性怒っている.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>私たちのこのやり取りも、もうマクロ化されてる気がするわ。『美咲が呼ぶ→拓也が来る→教わる→どこかで怒る→拓也が謝る→仲直り』、みたいな</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性驚く.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>え、それ、ボタン一つで再生されてるってこと？</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>そうそう。もう手順、体に染みついてる感じ</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>……それ、悪いことじゃないと思うけど</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性2.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>別に悪いとは言ってないわよ。ただ、いつも同じ手順で安定してるな、って</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya thought">
+    <p class="speaker-name">拓也<span class="thought-tag">心の声</span></p>
+    <p>……この"マクロ"、できればずっと続けたいな</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性3.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>なによ、また黙り込んで</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>いや、なんでもない。……次のコースも、追加していこうか</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性4.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>次のコース？</p>
+  </div>
+</div>
+<div class="bubble-row takuya">
+  <img class="avatar" src="images/faces/takuya/男性斜め左向き.png" alt="拓也">
+  <div class="bubble takuya">
+    <p class="speaker-name">拓也</p>
+    <p>いや、なんとなく</p>
+  </div>
+</div>
+<div class="bubble-row misaki">
+  <img class="avatar" src="images/faces/misaki/女性普段着/女性.png" alt="美咲">
+  <div class="bubble misaki">
+    <p class="speaker-name">美咲</p>
+    <p>……変なの。まあいいわ、次、どこ見る？</p>
+  </div>
+</div>
+</section>
+<section class="scene"><h2>今日のポイントおさらい</h2>
+<ol class="recap-list"><li><strong>マクロ＝一連の操作手順をあらかじめ登録し、ボタン一つで実行できる機能</strong></li><li><strong>プラグアンドプレイ</strong>は機器接続時の自動認識、<strong>オートコンプリート</strong>は文字入力の補助で、マクロとは別の自動化</li><li><strong>ソースコード</strong>は「機能」ではなく、プログラムの設計図となる「もの」を指す言葉</li><li>「自動でやってくれる」系の用語は、<strong>"何を自動化しているか"</strong>で見分ける</li><li>マクロは、<strong>毎回同じ手順を繰り返す作業</strong>を効率化するのに向いている</li></ol>
+<p class="narration">次回もお楽しみに。</p>
+<p class="footnote">この記事はITパスポート試験 令和6年度 問58（テクノロジ系／ソフトウェア）の解説です。</p>
+</section>
+</main>
+<div class="post-nav">
+  <div class="post-nav-buttons">
+    <a class="post-nav-btn post-nav-btn-note" href="https://note.com/cute_camel1259/n/n6cf51a4b5465">noteで全108話を購入する</a>
+    <a class="post-nav-btn" href="index.html">無料の一覧に行く</a>
+    <a class="post-nav-btn post-nav-btn-primary" href="https://buy.stripe.com/5kQ9AM7eobaF9pf0UL33W02">全108話を購入する（300円）</a>
+  </div>
+</div>
+<footer class="site-footer">
+  <p>ITパスポート過去問 ラブコメ解説</p>
+  <p><a class="contact-link" href="mailto:puniee.work@gmail.com?subject=IT%E3%83%91%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E9%81%8E%E5%8E%BB%E5%95%8F%20%E3%83%A9%E3%83%96%E3%82%B3%E3%83%A1%E8%A7%A3%E8%AA%AC%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">お問い合わせ</a>　<a class="contact-link" href="tokushoho.html">特定商取引法に基づく表記</a>　<a class="contact-link" href="privacy.html">プライバシーポリシー</a></p>
+</footer>
+</body>
+</html>

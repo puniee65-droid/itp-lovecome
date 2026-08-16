@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ITパスポート過去問 ラブコメ♥解説｜無料公開分</title>
+<meta name="description" content="ツンデレ女子大生と東大パソコンオタクの、ちょっと不器用な勉強会。ITパスポート過去問を実際の過去問で解説するラブコメ連載、無料公開分。">
+<link rel="canonical" href="https://itp-lovecome1-free.puniee-work.com/">
+<meta name="google-site-verification" content="0-v6CVaNU3h9D5Yw373vGnZ5f5Cju0XpfsWTc2XBGVM">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ITパスポート過去問 ラブコメ♥解説">
+<meta property="og:title" content="ITパスポート過去問 ラブコメ♥解説｜無料公開分">
+<meta property="og:description" content="ツンデレ女子大生と東大パソコンオタクの、ちょっと不器用な勉強会。ITパスポート過去問を実際の過去問で解説するラブコメ連載、無料公開分。">
+<meta property="og:url" content="https://itp-lovecome1-free.puniee-work.com/">
+<meta property="og:image" content="https://itp-lovecome1-free.puniee-work.com/images/ep001/thumb.png">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ITパスポート過去問 ラブコメ♥解説｜無料公開分">
+<meta name="twitter:description" content="ツンデレ女子大生と東大パソコンオタクの、ちょっと不器用な勉強会。ITパスポート過去問を実際の過去問で解説するラブコメ連載、無料公開分。">
+<meta name="twitter:image" content="https://itp-lovecome1-free.puniee-work.com/images/ep001/thumb.png">
+<style>
+
+:root {
+  --ink: #1f2337; --ink-soft: #5f6782;
+  --pink: #ff6b8a; --pink-bg: #ffe7ed; --pink-ln: #ffb0c3;
+  --blue: #2f6fed; --blue-bg: #e2ecff;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Hiragino Sans", "Noto Sans JP", system-ui, sans-serif;
+  color: var(--ink);
+  background: linear-gradient(135deg, #fff3f6 0%, #e9f0ff 100%);
+  line-height: 1.4;
+}
+.lp-hero {
+  max-width: 2000px; margin: 0 auto; width: 100%;
+  padding: 20px 20px 8px; text-align: center;
+}
+.lp-kicker { color: var(--ink-soft); font-weight: bold; letter-spacing: 0.02em; margin: 0; line-height: 1.2; font-size: 0.85rem; }
+.lp-hero h1 { font-size: clamp(1.2rem, 3.2vw, 2rem); margin: 4px 0; line-height: 1.2; }
+.lp-hero h1 .x { color: var(--ink-soft); font-weight: normal; margin: 0 6px; }
+.lp-sub {
+  color: var(--ink-soft); margin: 0; line-height: 1.2;
+  white-space: nowrap; font-size: clamp(0.65rem, 2.1vw, 0.95rem);
+}
+
+main {
+  max-width: 2000px; margin: 0 auto; width: 100%;
+  padding: 8px 20px 40px;
+}
+
+/* サムネ本来の縦横比（1280:670）を常に保つ。引き伸ばし・トリミング過多は行わない。
+   スマホは1列。PCなど幅に余裕がある画面では、1個あたり最低500px幅を確保できる列数まで
+   自動的に増やす（auto-fillにより、だいたい2〜3列になる）。 */
+.ep-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+@media (min-width: 800px) {
+  .ep-grid { grid-template-columns: repeat(auto-fill, minmax(500px, 1fr)); }
+}
+.ep-card {
+  display: block;
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 4px 16px rgba(31,35,55,0.08);
+  border: 1px solid rgba(31,35,55,0.05);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.ep-card:hover, .ep-card:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 26px rgba(31,35,55,0.14);
+}
+.ep-card-thumb {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1280 / 670;
+  object-fit: cover;
+  background: #f0f2f8;
+}
+
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 32px 0;
+}
+.section-divider::before,
+.section-divider::after {
+  content: '';
+  flex: 1 1 auto;
+  border-top: 6px dashed var(--blue);
+}
+.section-divider-label {
+  flex: none;
+  color: var(--blue);
+  font-weight: bold;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.purchase-block {
+  text-align: center;
+  margin: 0 auto 24px;
+}
+.purchase-block.purchase-top { margin: 16px auto 24px; }
+.purchase-block.purchase-bottom { margin: 40px auto 8px; }
+.purchase-copy {
+  margin: 0 0 12px;
+  color: var(--pink);
+  font-weight: bold;
+  font-size: clamp(0.95rem, 2.6vw, 1.15rem);
+}
+.purchase-btn {
+  display: inline-block;
+  padding: 16px 36px;
+  border-radius: 999px;
+  font-weight: bold;
+  font-size: 1.05rem;
+  text-decoration: none;
+  color: #fff;
+  background: var(--blue);
+  box-shadow: 0 6px 18px rgba(47,111,237,0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.purchase-btn:hover, .purchase-btn:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(47,111,237,0.45);
+}
+.note-btn {
+  display: inline-block;
+  margin: 10px 0 0;
+  padding: 14px 32px;
+  border-radius: 999px;
+  font-weight: bold;
+  font-size: 0.98rem;
+  text-decoration: none;
+  color: #000;
+  background: #ff8a00;
+  border: 2px solid #ff8a00;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.note-btn:hover, .note-btn:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255,138,0,0.35);
+}
+.purchase-price {
+  margin: 8px 0 0;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+}
+
+.site-footer {
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+  padding: 12px 20px 40px;
+}
+.contact-link {
+  color: var(--ink-soft);
+  text-decoration: underline;
+}
+
+</style>
+<script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1e557915580844ab85372ac0e8263b4d"}'></script>
+</head>
+<body>
+<header class="lp-hero">
+  <p class="lp-kicker">ITパスポート過去問 ラブコメ♥解説</p>
+  <h1>ツンデレ女子大生 <span class="x">×</span> 東大パソコンオタク</h1>
+  <p class="lp-sub">全108話。ちょっと不器用な二人の会話でITパスポート過去問を解説。</p>
+</header>
+<div class="purchase-block purchase-top">
+  <p class="purchase-copy">二人の関係が気になる！　恋のシーソーゲームをお楽しみください！</p>
+  <a class="purchase-btn" href="https://buy.stripe.com/5kQ9AM7eobaF9pf0UL33W02">全108話見る（Stripeで購入）</a>
+  <a class="note-btn" href="https://note.com/cute_camel1259/n/n6cf51a4b5465">noteで全108話を購入する</a>
+  <p class="purchase-price">¥300（税込）</p>
+</div>
+<main>
+
+<div class="ep-grid">
+<a class="ep-card" href="ep001.html">
+  <img class="ep-card-thumb" src="images/ep001/thumb.png" alt="第1話　電源を切ると消えるメモリは？" loading="lazy">
+</a>
+<a class="ep-card" href="ep002.html">
+  <img class="ep-card-thumb" src="images/ep002/thumb.png" alt="第2話　LINE通話がタダなのは、なんで？" loading="lazy">
+</a>
+<a class="ep-card" href="ep003.html">
+  <img class="ep-card-thumb" src="images/ep003/thumb.png" alt="第3話　そのロゴ、モノに刷れる？" loading="lazy">
+</a>
+<a class="ep-card" href="ep004.html">
+  <img class="ep-card-thumb" src="images/ep004/thumb.png" alt="第4話　技術不要の攻撃？" loading="lazy">
+</a>
+<a class="ep-card" href="ep005.html">
+  <img class="ep-card-thumb" src="images/ep005/thumb.png" alt="第5話　メール、本物？" loading="lazy">
+</a>
+<a class="ep-card" href="ep006.html">
+  <img class="ep-card-thumb" src="images/ep006/thumb.png" alt="第6話　メール設定が謎" loading="lazy">
+</a>
+<a class="ep-card" href="ep007.html">
+  <img class="ep-card-thumb" src="images/ep007/thumb.png" alt="第7話　100mAhの謎" loading="lazy">
+</a>
+<a class="ep-card" href="ep008.html">
+  <img class="ep-card-thumb" src="images/ep008/thumb.png" alt="第8話　PCIって、パーツ？" loading="lazy">
+</a>
+<a class="ep-card" href="ep009.html">
+  <img class="ep-card-thumb" src="images/ep009/thumb.png" alt="第9話　それバックアップでしょ？" loading="lazy">
+</a>
+<a class="ep-card" href="ep010.html">
+  <img class="ep-card-thumb" src="images/ep010/thumb.png" alt="第10話　静電気で反応するパネル" loading="lazy">
+</a>
+<a class="ep-card" href="ep011.html">
+  <img class="ep-card-thumb" src="images/ep011/thumb.png" alt="第11話　それVRでしょ？" loading="lazy">
+</a>
+<a class="ep-card" href="ep012.html">
+  <img class="ep-card-thumb" src="images/ep012/thumb.png" alt="第12話　それOSじゃない" loading="lazy">
+</a>
+<a class="ep-card" href="ep013.html">
+  <img class="ep-card-thumb" src="images/ep013/thumb.png" alt="第13話　レベル3の正体" loading="lazy">
+</a>
+<a class="ep-card" href="ep014.html">
+  <img class="ep-card-thumb" src="images/ep014/thumb.png" alt="第14話　暗号化で防げる？" loading="lazy">
+</a>
+<a class="ep-card" href="ep015.html">
+  <img class="ep-card-thumb" src="images/ep015/thumb.png" alt="第15話　拒否されたら、もう送れない" loading="lazy">
+</a>
+<a class="ep-card" href="ep016.html">
+  <img class="ep-card-thumb" src="images/ep016/thumb.png" alt="第16話　鍵も一緒に送る？" loading="lazy">
+</a>
+<a class="ep-card" href="ep017.html">
+  <img class="ep-card-thumb" src="images/ep017/thumb.png" alt="第17話　その名はライフログ" loading="lazy">
+</a>
+<a class="ep-card" href="ep018.html">
+  <img class="ep-card-thumb" src="images/ep018/thumb.png" alt="第18話　それアジャイル？" loading="lazy">
+</a>
+<a class="ep-card" href="ep019.html">
+  <img class="ep-card-thumb" src="images/ep019/thumb.png" alt="第19話　自動化の正体は「マクロ」" loading="lazy">
+</a>
+<a class="ep-card" href="ep020.html">
+  <img class="ep-card-thumb" src="images/ep020/thumb.png" alt="第20話　遊休資産を貸し借りする経済" loading="lazy">
+</a>
+</div>
+</main>
+<div class="purchase-block purchase-bottom">
+  <p class="purchase-copy">二人の関係が気になる！　恋のシーソーゲームをお楽しみください！</p>
+  <a class="purchase-btn" href="https://buy.stripe.com/5kQ9AM7eobaF9pf0UL33W02">全108話見る（Stripeで購入）</a>
+  <a class="note-btn" href="https://note.com/cute_camel1259/n/n6cf51a4b5465">noteで全108話を購入する</a>
+  <p class="purchase-price">¥300（税込）</p>
+</div>
+<footer class="site-footer">
+  <p><a class="contact-link" href="mailto:puniee.work@gmail.com?subject=IT%E3%83%91%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E9%81%8E%E5%8E%BB%E5%95%8F%20%E3%83%A9%E3%83%96%E3%82%B3%E3%83%A1%E8%A7%A3%E8%AA%AC%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6">お問い合わせ</a>　<a class="contact-link" href="tokushoho.html">特定商取引法に基づく表記</a>　<a class="contact-link" href="privacy.html">プライバシーポリシー</a></p>
+</footer>
+</body>
+</html>

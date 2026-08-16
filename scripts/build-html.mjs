@@ -16,6 +16,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { groupDirName } from './lib/groups.mjs';
+import { STRIPE_PURCHASE_URL, NOTE_PAID_SUMMARY_URL, CONTACT_MAILTO, WEB_ANALYTICS_SNIPPET_FREE, WEB_ANALYTICS_SNIPPET_PAID, FREE_BASE_URL, PAID_BASE_URL, SITE_NAME, GOOGLE_SITE_VERIFICATION_FREE } from './lib/links.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -24,7 +25,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 // HTMLは常に web/{range}/epNNN.html という1階層のサブフォルダに出力する。
 // 画像パスは「../images/...」の相対パスで参照する（file://で直接ダブルクリックしても、
 // 静的ホスティングにそのままアップロードしても、どちらでも同じ相対構造なら正しく解決できるため）。
-const IMG_PREFIX = '../images/';
+let IMG_PREFIX = '../images/';
 // 場所（meta.location）→ public/image/Illustration/ 内のファイル名。
 // 該当する挿絵がない場所（データセンター見学・ネットカフェ・試験会場前・電話）は意図的に未対応（挿絵なし）。
 const LOCATION_ILLUSTRATION = {
@@ -174,6 +175,27 @@ function renderCharacterCard(name, avatarSrc, kana, desc) {
 </div>`;
 }
 
+// note経由で無料公開ページに来た読者向けの導線パネル（flat構成の記事の上部・下部に表示）。
+// note記事URL（meta.note_url）が無い話は (3.1) ボタンを、note有料まとめ記事が未作成のうちは
+// (3.2) ボタンを、それぞれ出さない（URLを埋めた時点で自動的に出るようになる）。
+function renderPostNav(meta) {
+  const buttons = [];
+  if (meta.note_url) {
+    buttons.push(`<a class="post-nav-btn" href="${esc(meta.note_url)}">note記事に戻る</a>`);
+  }
+  if (NOTE_PAID_SUMMARY_URL) {
+    buttons.push(`<a class="post-nav-btn post-nav-btn-note" href="${esc(NOTE_PAID_SUMMARY_URL)}">noteで全108話を購入する</a>`);
+  }
+  buttons.push('<a class="post-nav-btn" href="index.html">無料の一覧に行く</a>');
+  buttons.push(`<a class="post-nav-btn post-nav-btn-primary" href="${esc(STRIPE_PURCHASE_URL)}">全108話を購入する（300円）</a>`);
+
+  return `<div class="post-nav">
+  <div class="post-nav-buttons">
+    ${buttons.join('\n    ')}
+  </div>
+</div>`;
+}
+
 function renderBlockquote(rawLines, kicker = '今日の問題', isRecap = false) {
   const cleaned = rawLines.map((l) => l.replace(/^>\s?/, '').replace(/\s+$/, ''));
   const nonEmpty = cleaned.filter((l) => l.length > 0);
@@ -219,16 +241,20 @@ function renderTable(rawLines) {
   return `<div class="table-wrap"><table><thead>${thead}</thead><tbody>${tbody}</tbody></table></div>`;
 }
 
-function build(ep) {
+function build(ep, { outRoot = 'web', flat = false } = {}) {
   const mdPath = path.join(ROOT, 'episodes', `ep${String(ep).padStart(3, '0')}.md`);
   const md = fs.readFileSync(mdPath, 'utf8');
   const { meta, body } = readMeta(md);
 
+  // flat: true の場合、20話区切りのグループフォルダを作らず outRoot 直下にHTMLを置く
+  // （少数話だけを集めた特設サイトなど、通常のweb/とは別の出力先向け）。
+  IMG_PREFIX = flat ? 'images/' : '../images/';
+
   const epStr = String(ep).padStart(3, '0');
-  const outDir = path.join(ROOT, 'web', groupDirName(ep));
-  // 画像はグループフォルダごとに分けず、web/images/ に一本化する（ルート相対パスで参照するため、
+  const outDir = flat ? path.join(ROOT, outRoot) : path.join(ROOT, outRoot, groupDirName(ep));
+  // 画像はグループフォルダごとに分けず、{outRoot}/images/ に一本化する（相対パスで参照するため、
   // どのサブフォルダのHTMLからでも同じ場所を指せる）。
-  const imgDir = path.join(ROOT, 'web', 'images');
+  const imgDir = path.join(ROOT, outRoot, 'images');
   const epImgDir = path.join(imgDir, `ep${epStr}`);
   fs.mkdirSync(outDir, { recursive: true });
   fs.mkdirSync(epImgDir, { recursive: true });
@@ -296,6 +322,12 @@ function build(ep) {
     fs.copyFileSync(thumbPath, path.join(epImgDir, 'thumb.png'));
     ogImage = `${IMG_PREFIX}ep${epStr}/thumb.png`;
   }
+  // SEO用の絶対URL。flat（web_free）は直下、通常（web）は20話区切りフォルダの下にある。
+  const baseUrl = flat ? FREE_BASE_URL : PAID_BASE_URL;
+  const pagePath = flat ? `ep${epStr}.html` : `${groupDirName(ep)}/ep${epStr}.html`;
+  const canonicalUrl = `${baseUrl}/${pagePath}`;
+  // images/ は flat/グループどちらの構成でも outRoot 直下に一本化されているので、常に同じ絶対パスになる。
+  const ogImageAbs = ogImage ? `${baseUrl}/images/ep${epStr}/thumb.png` : '';
 
   const lines = body.split('\n');
   const hero = [];
@@ -414,29 +446,50 @@ function build(ep) {
   closeSectionIfOpen();
 
   const title = meta.thumb_title || `第${ep}話`;
+  const pageTitle = `【第${ep}話】${title}｜ITパスポート ラブコメ解説`;
+  const yearJa = (meta.year ?? '').replace(/^r0?(\d+)$/, '令和$1年度').replace(/^h0?(\d+)$/, '平成$1年度');
+  const pageDesc = `${title}｜ツンデレ女子大生と東大パソコンオタクの、ちょっと不器用な勉強会。ITパスポート過去問（${yearJa} 問${meta.number ?? ''}）を実際の過去問で解説。`;
+  // 有料サイト（web、flat=false）は access=granted Cookie が無いと _middleware.js が
+  // /paywall.html へリダイレクトするため、検索エンジンには実質この本文が見えない。
+  // 二重の安全策として明示的に noindex も付けておく（無料サイトは通常どおり索引対象）。
+  const robotsMeta = flat ? '' : '\n<meta name="robots" content="noindex, nofollow">';
   const html = `<!doctype html>
 <html lang="ja">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>【第${ep}話】${esc(title)}｜ITパスポート ラブコメ解説</title>
-<meta name="description" content="${esc(title)}｜ツンデレ女子大生と東大パソコンオタクの、ちょっと不器用な勉強会。">
-${ogImage ? `<meta property="og:image" content="${ogImage}">` : ''}
+<title>${esc(pageTitle)}</title>
+<meta name="description" content="${esc(pageDesc)}">
+<link rel="canonical" href="${canonicalUrl}">${robotsMeta}
+${flat && GOOGLE_SITE_VERIFICATION_FREE ? `<meta name="google-site-verification" content="${GOOGLE_SITE_VERIFICATION_FREE}">` : ''}
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="${esc(SITE_NAME)}">
+<meta property="og:title" content="${esc(pageTitle)}">
+<meta property="og:description" content="${esc(pageDesc)}">
+<meta property="og:url" content="${canonicalUrl}">
+<meta property="og:locale" content="ja_JP">
+${ogImageAbs ? `<meta property="og:image" content="${ogImageAbs}">` : ''}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${esc(pageTitle)}">
+<meta name="twitter:description" content="${esc(pageDesc)}">
+${ogImageAbs ? `<meta name="twitter:image" content="${ogImageAbs}">` : ''}
 <style>
 ${CSS}
 </style>
+${flat ? WEB_ANALYTICS_SNIPPET_FREE : WEB_ANALYTICS_SNIPPET_PAID}
 </head>
 <body>
-<a class="back-to-index" href="index.html">← 一覧に戻る</a>
+${flat ? renderPostNav(meta) : '<a class="back-to-index" href="index.html">← 一覧に戻る</a>'}
 <header class="hero">
 ${hero.join('\n')}
 </header>
 <main>
 ${main.join('\n')}
 </main>
-<a class="back-to-index back-to-index-bottom" href="index.html">← 一覧に戻る</a>
+${flat ? renderPostNav(meta) : '<a class="back-to-index back-to-index-bottom" href="index.html">← 一覧に戻る</a>'}
 <footer class="site-footer">
   <p>ITパスポート過去問 ラブコメ解説</p>
+  <p><a class="contact-link" href="${CONTACT_MAILTO}">お問い合わせ</a>　<a class="contact-link" href="tokushoho.html">特定商取引法に基づく表記</a>　<a class="contact-link" href="privacy.html">プライバシーポリシー</a></p>
 </footer>
 </body>
 </html>
@@ -494,6 +547,56 @@ main, header.hero, footer.site-footer {
 }
 .back-to-index-bottom {
   margin: 32px auto 40px;
+}
+
+.post-nav {
+  max-width: 640px;
+  margin: 8px auto 0;
+  padding: 20px;
+  background: #fff;
+  border: 2px solid var(--pink-ln);
+  border-radius: 16px;
+  text-align: center;
+}
+.post-nav-title {
+  margin: 0 0 12px;
+  font-weight: bold;
+  color: var(--pink);
+  font-size: 0.95rem;
+}
+.post-nav-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+.post-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 18px;
+  border-radius: 999px;
+  font-weight: bold;
+  font-size: 0.85rem;
+  text-decoration: none;
+  color: var(--ink);
+  background: #fff;
+  border: 2px solid var(--blue-ln);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.post-nav-btn:hover, .post-nav-btn:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(31,35,55,0.1);
+}
+.post-nav-btn-primary {
+  color: #fff;
+  background: var(--blue);
+  border-color: var(--blue);
+  box-shadow: 0 4px 14px rgba(47,111,237,0.3);
+}
+.post-nav-btn-note {
+  color: #000;
+  background: #ff8a00;
+  border-color: #ff8a00;
 }
 header.hero {
   padding-top: 16px;
@@ -654,13 +757,27 @@ footer.site-footer {
   font-size: 0.8rem;
   padding: 24px 20px 60px;
 }
+.contact-link {
+  color: var(--ink-soft);
+  text-decoration: underline;
+}
 @media (max-width: 480px) {
   .bubble-row .avatar { width: 108px; height: 108px; }
   .bubble { max-width: calc(100% - 130px); }
   header.hero h1 { font-size: 1.35rem; }
+  .character-card { flex-direction: column; text-align: center; }
+  .character-card img { width: 160px; height: 160px; }
 }
 `;
 
-const ep = Number(process.argv[2]);
-if (!ep) { console.error('使い方: node scripts/build-html.mjs <話数>'); process.exit(1); }
-build(ep);
+export { build };
+
+const isMain = process.argv[1] && import.meta.url === `file://${process.argv[1]}`;
+if (isMain) {
+  const ep = Number(process.argv[2]);
+  if (!ep) { console.error('使い方: node scripts/build-html.mjs <話数> [--out=web_free] [--flat]'); process.exit(1); }
+  const outArg = process.argv.find((a) => a.startsWith('--out='));
+  const outRoot = outArg ? outArg.slice('--out='.length) : 'web';
+  const flat = process.argv.includes('--flat');
+  build(ep, { outRoot, flat });
+}
